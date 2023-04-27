@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { GoogleLogin, GoogleLogout } from '@react-oauth/google'
 import { AiOutlineLogout } from 'react-icons/ai'
 import { BiSearch } from 'react-icons/bi'
-import Logo from '../assets/images/Logo.jpg'
+import Logo from '../../public/assets/images/Logo.jpg'
 
 
 

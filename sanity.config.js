@@ -1,5 +1,7 @@
+import pages from '@/sanity/schemas/page'
 import {defineConfig} from 'sanity'
 import {deskTool} from 'sanity/desk'
+
 
 const config = defineConfig({
 
@@ -13,6 +15,8 @@ const config = defineConfig({
   basePath: '/admin',
 
   plugins: [deskTool()],
+
+  schema: { types: [pages] },
 
 })
 
