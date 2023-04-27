@@ -1,6 +1,5 @@
 import { createClient, groq } from "next-sanity";
 
-
 export async function getMenuStructure() {
 
    const client = createClient ({
