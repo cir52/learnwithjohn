@@ -4,7 +4,7 @@ import React from 'react'
 export default function Menu( {items} ) {
   
    if (!items) {
-      return <div>Loading...</div>;
+      return <div className='loading'>Loading...</div>;
    }
   
    return (

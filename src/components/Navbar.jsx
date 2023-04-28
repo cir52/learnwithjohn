@@ -18,8 +18,7 @@ const Navbar = () => {
                     <Image 
                         className = 'cursor-pointer'
                         src = {Logo}
-                        alt = 'Home'
-                        Layout = 'responsive'             
+                        alt = 'Home'           
                     />
                 </div>            
             </Link>          
