@@ -57,3 +57,33 @@ export async function getHome() {
    `
   )
 }
+
+export async function getContentPage( slug ) {
+
+  const client = createClient({
+    projectId: 'uf77088s',
+    dataset: 'production',
+    apiVersion: '2023-04-24',
+    useCdn: true,
+  })
+
+  return client.fetch(
+    groq`
+     *[_type == "page" && slug.current == $slug][0] {
+       _id,
+       title,
+       content[]{
+        ...,
+        markDefs[]{
+          ...,
+          _type == "internalLink" => {
+            "slug": @.reference->slug
+          }
+        }
+      }
+     }
+   `,
+   { slug }
+  )
+}
+

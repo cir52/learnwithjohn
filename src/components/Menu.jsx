@@ -1,4 +1,5 @@
 
+import Link from 'next/link';
 import React from 'react'
 
 export default function Menu( {items} ) {
@@ -8,16 +9,16 @@ export default function Menu( {items} ) {
    }
   
    return (
-         <nav>
+         <nav className='nav-container'>
             <ul>
             {items.map((item) => (
                <li key={item._id}>
-                  <a href={item.slug}>{item.title}</a>
+                  <Link href={item.slug.current}>{item.title}</Link>
                   {item.children && (
                   <ul>
                      {item.children.map((child) => (
                         <li key={child._id}>
-                        <a href={child.slug}>{child.title}</a>
+                        <Link href={child.slug.current}>{child.title}</Link>
                         {child.children && <Menu items={child.children} />}
                         </li>
                      ))}

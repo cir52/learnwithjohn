@@ -1,5 +1,4 @@
-import Image from 'next/image'
-import { useState, useEffect } from 'react'
+
 import Navbar from '@/components/Navbar'
 import Sidebar from '@/components/Sidebar'
 import MainContent from '@/components/MainContent'
