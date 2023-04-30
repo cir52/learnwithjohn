@@ -1,18 +1,19 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { GoogleLogin, GoogleLogout } from '@react-oauth/google'
-import { AiOutlineLogout } from 'react-icons/ai'
-import { BiSearch } from 'react-icons/bi'
+
 import Logo from '../../public/assets/images/Logo.jpg'
+import NavbarMenu from './navbar/NavbarMenu';
+import NavbarSearch from './navbar/NavbarSearch';
+import NavbarLogin from './navbar/NavbarLogin';
+import NavbarSocials from './navbar/NavbarSocials';
 
 
 
 
 const Navbar = () => {
     return (
-        <div className='navbar w-full flex justify-between item-center py-2 px-4'>
+        <div className='navbar backdrop-blur-md w-full flex justify-between item-center py-2 px-4'>
             <Link href='/'>
                 <div className='w-[70px]'>
                     <Image 
@@ -21,7 +22,11 @@ const Navbar = () => {
                         alt = 'Home'           
                     />
                 </div>            
-            </Link>          
+            </Link>
+            <NavbarMenu />
+            <NavbarSearch />
+            <NavbarSocials />
+            <NavbarLogin />         
         </div> 
     )
 }

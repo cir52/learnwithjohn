@@ -22,12 +22,13 @@ const Sidebar = () => {
      fetchData();
   }, []);
 
+
   return (
     <div>
       <div className = 'block xl:hidden m-1 ml-4 mt-3 text-xl'
            onClick = {() => setShowSidebar((value) => !value)}
       >
-          {showSidebar ? <ImCancelCircle /> : <AiOutlineMenu /> }
+        {showSidebar ? <ImCancelCircle /> : <AiOutlineMenu /> }
       </div>
       {
         showSidebar && (

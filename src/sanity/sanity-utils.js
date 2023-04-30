@@ -1,5 +1,25 @@
 import { createClient, groq } from "next-sanity";
 
+export async function getNavbarMenu() {
+
+  const client = createClient({
+    projectId: 'uf77088s',
+    dataset: 'production',
+    apiVersion: '2023-04-24',
+    useCdn: true,
+  })
+
+  return client.fetch(
+    groq`
+      *[_type == "navbar"] {
+        _id,
+        title,
+        slug
+      }
+    `
+  )
+}
+
 export async function getMenuStructure() {
 
   const client = createClient({
@@ -15,11 +35,11 @@ export async function getMenuStructure() {
         _id,
         title,
         slug,
-        "children": *[_type == "page" && references(^._id)] {
+        "children": *[_type == "page" && references(^._id) && parent._ref == ^._id] {
           _id,
           title,
           slug,
-          "children": *[_type == "page" && references(^._id)] {
+          "children": *[_type == "page" && references(^._id) && parent._ref == ^._id] {
             _id,
             title,
             slug
@@ -58,7 +78,7 @@ export async function getHome() {
   )
 }
 
-export async function getContentPage( slug ) {
+export async function getContentPage(slug) {
 
   const client = createClient({
     projectId: 'uf77088s',
@@ -69,7 +89,7 @@ export async function getContentPage( slug ) {
 
   return client.fetch(
     groq`
-     *[_type == "page" && slug.current == $slug][0] {
+     *[(_type == "page" || _type == "navbar") && slug.current == $slug][0] {
        _id,
        title,
        content[]{
@@ -83,7 +103,6 @@ export async function getContentPage( slug ) {
       }
      }
    `,
-   { slug }
+    { slug }
   )
 }
-

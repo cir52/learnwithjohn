@@ -1,5 +1,6 @@
 import pages from '@/sanity/schemas/page'
 import home from '@/sanity/schemas/home'
+import navbar from '@/sanity/schemas/navbar'
 import {defineConfig} from 'sanity'
 import {deskTool} from 'sanity/desk'
 
@@ -17,7 +18,7 @@ const config = defineConfig({
 
   plugins: [deskTool()],
 
-  schema: { types: [pages, home] },
+  schema: { types: [pages, home, navbar] },
 
 })
 
