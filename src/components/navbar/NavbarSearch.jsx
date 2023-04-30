@@ -1,10 +1,18 @@
-import React from 'react'
+import { useRouter } from 'next/router';
+import React, { useState, useEffect } from 'react'
+import  { BiSearch } from 'react-icons/bi'
 
 const NavbarSearch = () => {
 
+  const [searchValue, setSearchValue] = useState('')
+  const router = useRouter();
 
-  const handleSearch = () => {
-
+  const handleSearch = (e) => {
+    e.preventDefault()
+    
+    if (searchValue) {
+      router.push(`/search/${searchValue}`)
+    }
   }
 
   return (
@@ -14,12 +22,18 @@ const NavbarSearch = () => {
         onSubmit = {handleSearch}        
       >
         <input
-          className = 'navbar-search-input bg-blue-50 p-2 md:text-md border border-gray-300 focus:outline-none focus:border focus:border-[#140eae] w-[300px] md:w-[350px] rounded-md md:top-0'
+          className = 'navbar-search-input bg-blue-50 pl-4 p-2 md:text-md border border-blue-200 focus:outline-none focus:border-1 focus:border-[#140eae] w-[300px] md:w-[350px] rounded-full md:top-0'
           type = 'text'
-          value = ''
-          onChange = { () => {}}
+          value = {searchValue}
+          onChange = { (e) => setSearchValue(e.target.value) }
           placeholder = 'Search'
         />
+        <button
+          onClick = {handleSearch}
+          className = 'absolute md:right-3 text-[#140eae77] right-4 border-l-2 border-blue-200 my-2 pl-4 text-2xl'
+        >
+          <BiSearch className = 'pt-[2px]'/>
+        </button>
       </form>
     </div>
   )

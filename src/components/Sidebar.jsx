@@ -24,15 +24,15 @@ const Sidebar = () => {
 
 
   return (
-    <div>
-      <div className = 'block xl:hidden m-1 ml-4 mt-3 text-xl'
+    <div className='sidebar h-[92vh] overflow:hidden xl:hover:overflow-auto'>
+      <div className = 'block xl:hidden ml-4 text-xl'
            onClick = {() => setShowSidebar((value) => !value)}
       >
         {showSidebar ? <ImCancelCircle /> : <AiOutlineMenu /> }
       </div>
       {
         showSidebar && (
-          <div  className = 'xl:w-400 w-20 flex flex-col justify-start mb-10 border-r-2 border-gray-100 xl:border-0 p-3'>
+          <div  className = 'xl:w-400 w-20 flex flex-col justify-start border-r-2 border-gray-100 xl:border-0 p-3'>
               <Menu items={items} />
           </div>
         )

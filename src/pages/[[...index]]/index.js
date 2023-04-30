@@ -16,13 +16,11 @@ export default function Home() {
   return (
     <div>
       <Navbar />
-      <div className="flex gap-6 md:gap-20">
-        <div className="h-[92vh] overflow:hidden xl:hover:overflow-auto">
-          <Sidebar />
-        </div>
-        <main className="flex min-h-screen flex-col items-center justify-between p-24">
-          <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-            { path === '/' ? <HomePage /> : <ContentPage /> }
+      <div className="mt-[6rem] flex gap-6 md:gap-20">
+        <Sidebar />
+        <main className="flex min-h-screen flex-col items-center justify-between p-4">
+          <div className="w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
+            {path === '/' ? <HomePage /> : <ContentPage />}
           </div>
         </main>
       </div>
