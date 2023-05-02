@@ -18,11 +18,11 @@ const NavbarSearch = () => {
   return (
     <div className = 'navbar-search relative hidden md:block'>
       <form
-        className = 'absolute md:static top-10 -left-20'
+        className = ''
         onSubmit = {handleSearch}        
       >
         <input
-          className = 'navbar-search-input bg-blue-50 pl-4 p-2 md:text-md border border-blue-200 focus:outline-none focus:border-1 focus:border-[#140eae] w-[300px] md:w-[350px] rounded-full md:top-0'
+          className = 'navbar-search-input bg-blue-50 pl-4 p-2 md:text-md border border-blue-200 focus:outline-none focus:border-2 focus:border-[#140eae] w-[350px] rounded-full placeholder-[#140eae66]'
           type = 'text'
           value = {searchValue}
           onChange = { (e) => setSearchValue(e.target.value) }
@@ -32,7 +32,7 @@ const NavbarSearch = () => {
           onClick = {handleSearch}
           className = 'absolute md:right-3 text-[#140eae77] right-4 border-l-2 border-blue-200 my-2 pl-4 text-2xl'
         >
-          <BiSearch className = 'pt-[2px]'/>
+          <BiSearch className = 'hover:text-[#ed1b24] pt-[2px]'/>
         </button>
       </form>
     </div>

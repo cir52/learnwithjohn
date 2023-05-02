@@ -1,5 +1,6 @@
 
 /* Logo Blue:   #140eae   20,14,174 */
+/* Logo Red:   #ed1b24   237,27,36 */
 
 .navbar {
    color: #140eae;
@@ -7,7 +8,6 @@
    -webkit-box-shadow: 0px 2px 10px -5px rgba(20,14,174,1);
    -moz-box-shadow: 0px 2px 10px -5px rgba(20,14,174,1);
    box-shadow: 0px 2px 10px -5px rgba(20,14,174,1);
-
 }
 
 .loading {
@@ -28,6 +28,8 @@
 
 }
 .sidebar {
-
    
+}
+.navbar-socials {
+
 }

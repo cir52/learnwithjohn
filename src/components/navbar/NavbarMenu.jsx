@@ -1,17 +1,19 @@
 import { getNavbarMenu } from '@/sanity/sanity-utils';
 import Link from 'next/link';
-import React from 'react'
+import React, { useContext } from 'react'
 import Image from 'next/image';
 import Logo from '../../../public/assets/images/Logo.jpg'
+import { SanityContext } from '@/sanity/SanityContextProvider';
 
 const NavbarMenu = () => {
 
+   const client = useContext(SanityContext)
    const [items, setItems] = React.useState(null);
 
    // useEffect to check if menu is fetched and ready for rendering
    React.useEffect(() => {
       const fetchData = async () => {
-         const data = await getNavbarMenu()
+         const data = await getNavbarMenu(client)
          setItems(data);
       };
       fetchData();
@@ -33,7 +35,7 @@ const NavbarMenu = () => {
          </Link>
          <div className='flex justify-between gap-6 ml-6 items-center font-semibold'>
             {items.map((item) => (
-               <Link key={item._id} href={item.slug.current}>{item.title}</Link>
+               <Link className='hover:text-[#ed1b24]' key={item._id} href={item.slug.current}>{item.title}</Link>
             ))
             }
          </div>

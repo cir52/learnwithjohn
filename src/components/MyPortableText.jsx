@@ -1,17 +1,12 @@
 import PortableText from '@sanity/block-content-to-react';
-import React from 'react'
+import React, { useContext } from 'react'
 import imageUrlBuilder from '@sanity/image-url'
-import { createClient } from 'next-sanity';
 import Link from 'next/link'
+import { SanityContext } from '@/sanity/SanityContextProvider';
 
 const MyPortableText = ( {blocks} ) => {
 
-   const client = createClient({
-      projectId: 'uf77088s',
-      dataset: 'production',
-      apiVersion: '2023-04-24',
-      useCdn: true,
-   })
+   const client = useContext(SanityContext);
 
    // Get a pre-configured url-builder from the sanity client
    const builder = imageUrlBuilder(client)

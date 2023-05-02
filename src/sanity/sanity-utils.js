@@ -1,14 +1,9 @@
-import { createClient, groq } from "next-sanity";
+import { groq } from "next-sanity";
+import { useContext } from "react";
+import { SanityContext } from "./SanityContextProvider";
 
-export async function getNavbarMenu() {
-
-  const client = createClient({
-    projectId: 'uf77088s',
-    dataset: 'production',
-    apiVersion: '2023-04-24',
-    useCdn: true,
-  })
-
+export async function getNavbarMenu(client) {
+  
   return client.fetch(
     groq`
       *[_type == "navbar"] {
@@ -20,14 +15,21 @@ export async function getNavbarMenu() {
   )
 }
 
-export async function getMenuStructure() {
+export async function getNavbarSocials(client) {
+  
+  return client.fetch(
+    groq`
+      *[_type == "social"] {
+        _id,
+        title,
+        icon,
+        link
+      }
+    `
+  )
+}
 
-  const client = createClient({
-    projectId: 'uf77088s',
-    dataset: 'production',
-    apiVersion: '2023-04-24',
-    useCdn: true,
-  })
+export async function getMenuStructure(client) {
 
   return client.fetch(
     groq`
@@ -50,14 +52,7 @@ export async function getMenuStructure() {
   )
 }
 
-export async function getHome() {
-
-  const client = createClient({
-    projectId: 'uf77088s',
-    dataset: 'production',
-    apiVersion: '2023-04-24',
-    useCdn: true,
-  })
+export async function getHome(client) {
 
   return client.fetch(
     groq`
@@ -78,14 +73,7 @@ export async function getHome() {
   )
 }
 
-export async function getContentPage(slug) {
-
-  const client = createClient({
-    projectId: 'uf77088s',
-    dataset: 'production',
-    apiVersion: '2023-04-24',
-    useCdn: true,
-  })
+export async function getContentPage({client, slug}) {
 
   return client.fetch(
     groq`

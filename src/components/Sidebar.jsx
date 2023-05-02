@@ -1,22 +1,26 @@
-import React, { useState } from 'react'
-import { useRouter } from 'next/router'
-import Link from 'next/link' 
-import GoogleLogin from '@react-oauth/google'
-import { AiFillHome, AiOutlineMenu} from 'react-icons/ai'
+import React, { useState, useContext, useEffect  } from 'react'
+import { AiOutlineMenu} from 'react-icons/ai'
 import { ImCancelCircle } from 'react-icons/im'
 import { getMenuStructure } from '@/sanity/sanity-utils'
 import Menu from './Menu'
-
+import { SanityContext } from '@/sanity/SanityContextProvider'
+import { Sidenav, initTE } from "tw-elements"
 
 const Sidebar = () => {
-  
+
+  useEffect(() => {
+    initTE({ Sidenav })
+  }, []);
+
+  const client = useContext(SanityContext);
+
   const [items, setItems] = React.useState(null);
   const [showSidebar, setShowSidebar] = useState(true)
   
   // useEffect to check if menu is fetched and ready for rendering
   React.useEffect(() => {
      const fetchData = async () => {
-        const data = await getMenuStructure()
+        const data = await getMenuStructure(client)
         setItems(data);
      };
      fetchData();

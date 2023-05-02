@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { getContentPage } from '@/sanity/sanity-utils';
 import MyPortableText from './MyPortableText';
 import { useRouter } from 'next/router';
+import { SanityContext } from '@/sanity/SanityContextProvider';
 
 const ContentPage = () => {
+
+   const client = useContext(SanityContext);
    const [pageData, setPageData] = useState(null);
    const [slug, setSlug] = useState(null);
    const router = useRouter();
@@ -17,7 +20,7 @@ const ContentPage = () => {
    useEffect(() => {
       if (slug) {
          const fetchData = async () => {
-            const data = await getContentPage(slug);
+            const data = await getContentPage({client, slug});
             setPageData(data);
          };
          fetchData();
