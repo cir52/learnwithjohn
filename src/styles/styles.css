@@ -27,9 +27,26 @@
 .navbar-search-input {
 
 }
+
+/* SIDEBAR */
 .sidebar {
    
 }
+
+.menu-enter-active,
+.menu-leave-active {
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.menu-enter,
+.menu-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+
 .navbar-socials {
 
 }
+
+

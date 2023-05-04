@@ -1,11 +1,11 @@
-/** @type {import('tailwindcss').Config} */
+/* @type {import('tailwindcss').Config} */
+
 module.exports = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx}',
     './src/components/**/*.{js,ts,jsx,tsx}',
     // './src/app/**/*.{js,ts,jsx,tsx}',
     "./src/**/*.{js,ts,jsx,tsx}",
-    "./node_modules/tw-elements/dist/js/**/*.js"
   ],
   theme: {
     extend: {
@@ -14,8 +14,17 @@ module.exports = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      transitionProperty: {
+        'transform': 'transform',
+      },
+      transitionDuration: {
+        '300': '300ms',
+      },
+      transitionTimingFunction: {
+        'ease-in-out': 'ease-in-out',
+      },
+      variants:{}
     },
   },
-  darkMode: "class",
-  plugins: [require("tw-elements/dist/plugin.cjs")],
+  plugins: [],
 }
