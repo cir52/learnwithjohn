@@ -1,9 +1,23 @@
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useRouter } from "next/router"
 import React, { useState } from "react"
+import clsx from "clsx"
+
+const textStyle = (level) => {
+   switch (level) {
+      case 1:
+         return "text-lg font-bold text-[#140eae]"
+      case 2:
+         return "text-base font-medium text-[#140eae]"
+      case 3:
+         return "text-sm font-normal text-[#140eae]"
+      default:
+         return "text-sm font-normal text-[#140eae]"
+   }
+}
 
 const ArrowIcon = ({ isOpen }) => (
-   <div className={`transition-all duration-300 ease-in-out ${isOpen ? "rotate-180" : ""}`}>
+   <div className={`hover:text-[#ed1b24] transition-all duration-300 ease-in-out ${isOpen ? "rotate-180" : ""}`}>
       <svg
          xmlns="http://www.w3.org/2000/svg"
          viewBox="0 0 20 20"
@@ -19,15 +33,21 @@ const ArrowIcon = ({ isOpen }) => (
    </div>
 )
 
-const LinkWithChild = ({ item }) => {
+const LinkWithChild = ({ item, level = 1 }) => {
 
    const router = useRouter()
    const [isOpen, setIsOpen] = useState(false)
 
+   const isActive = () => {
+      const currentSlug = router.asPath.split("/").pop()
+      const itemSlug = item.slug.current
+      return currentSlug === itemSlug
+   }
+
    const handleClick = async (e) => {
       e.preventDefault()
-      setIsOpen((prev) => !prev);
-      await router.push(item.slug.current);
+      setIsOpen((prev) => !prev)
+      await router.push(item.slug.current)
    }
 
    const handleArrowClick = (e) => {
@@ -36,20 +56,26 @@ const LinkWithChild = ({ item }) => {
 
    return (
       <li className="relative">
-         <div className="flex justify-between gap-2 items-center">
-            <Link href={item.slug.current} onClick={handleClick}>
+         <div className = { clsx(
+               textStyle(level),
+               "flex justify-between gap-2 items-center",
+               { "text-[#ed1b24]": isActive() }, // Apply color if the menu item is active
+               "hover:text-[#ed1b24]",
+             )}
+         >
+            <a  href={item.slug.current} onClick={handleClick} className={` transition-colors duration-200`}>
                {item.title}
-            </Link>
-            <div onClick={handleArrowClick}>
+            </a>
+            <div onClick={handleArrowClick} className="cursor-pointer">
                <ArrowIcon isOpen={isOpen} />
             </div>
          </div>
-         <ul className={`relative m-0 list-none p-0`}>
+         <ul className={`relative m-0 list-none p-0 pt-2 transition-all duration-300 ease-in-out space-y-2 ${isOpen ? "block" : "hidden"} pl-3`}>
             {item.children.map((child) =>
                child.children && child.children.length > 0 ? (
-                  <LinkWithChild item={child} key={child._id} />
+                  <LinkWithChild item={child} key={child._id} level={level + 1} />
                ) : (
-                  <LinkWithoutChild item={child} key={child._id} />
+                  <LinkWithoutChild item={child} key={child._id} level={level + 1} />
                )
             )}
          </ul>
@@ -57,13 +83,30 @@ const LinkWithChild = ({ item }) => {
    )
 }
 
-const LinkWithoutChild = ({ item }) => {
+const LinkWithoutChild = ({ item, level = 1 }) => {
+   
+   const router = useRouter()
+   const isActive = () => {
+      const currentSlug = router.asPath.split("/").pop()
+      const itemSlug = item.slug.current
+      return currentSlug === itemSlug
+   }
+
    return (
       <li className="relative">
-         <Link href={item.slug.current}>{item.title}</Link>
+         <a href={item.slug.current} 
+            className={clsx(
+               textStyle(level),
+               { "text-[#ed1b24]": isActive() }, // Apply color if the menu item is active
+               "hover:text-[#ed1b24] transition-colors duration-200"
+            )}
+         >
+            {item.title}
+         </a>
       </li>
    )
 }
+
 
 export default function Menu({ items }) {
 
@@ -74,7 +117,7 @@ export default function Menu({ items }) {
    return (
       <div>
          <nav>
-            <ul className="relative m-0 list-none px-[0.2rem]">
+            <ul className="relative m-0 list-none space-y-2">
                {items.map((item) =>
                   item.children ? (
                      <LinkWithChild item={item} key={item._id} />
