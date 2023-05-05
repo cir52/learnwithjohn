@@ -23,7 +23,9 @@ const NavbarSocials = () => {
      return <></>;
   } 
 
-  const myDiv = items.map((item) => {
+  return ( 
+      <>
+        {items.map((item) => {
                 const CurrentIcon = FaIcons[ item.icon ]     
                 return (
                   item.link.blank ? 
@@ -34,12 +36,8 @@ const NavbarSocials = () => {
                         <CurrentIcon />
                     </Link>
                 )
-        })
-
-  return (
-    <div className='navbar-socials flex justify-between gap-6 ml-6 items-center'>
-      {myDiv}
-    </div>
+        })}
+      </>
   )
 }
 

@@ -1,10 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { getMenuStructure } from '@/sanity/sanity-utils'
-// import dynamic from "next/dynamic";
 import { SanityContext } from '@/sanity/SanityContextProvider'
 import Menu from './Menu';
-
-// const DynamicMenu = dynamic(() => import("./Menu"), { ssr: false });
 
 const Sidebar = () => {
 

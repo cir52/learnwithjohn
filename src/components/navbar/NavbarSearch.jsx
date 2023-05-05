@@ -16,13 +16,12 @@ const NavbarSearch = () => {
   }
 
   return (
-    <div className = 'navbar-search relative hidden md:block'>
+    <div className = 'relative'>
       <form
-        className = ''
         onSubmit = {handleSearch}        
       >
         <input
-          className = 'navbar-search-input bg-blue-50 pl-4 p-2 md:text-md border border-blue-200 focus:outline-none focus:border-2 focus:border-[#140eae] w-[350px] rounded-full placeholder-[#140eae66]'
+          className = 'w-full navbar-search-input bg-blue-50 pl-4 p-2 pr-[65px] md:text-md border border-blue-200 focus:outline-none focus:border-[#140eae] rounded-xl md:rounded-full md:w-[200px] lg:w-[280px] xl:w-[350px] 2xl:w-[450px] placeholder-[#140eae66]'
           type = 'text'
           value = {searchValue}
           onChange = { (e) => setSearchValue(e.target.value) }

@@ -2,11 +2,14 @@ import Link from "next/link";
 import { useRouter } from "next/router"
 import React, { useState } from "react"
 import clsx from "clsx"
+import NavbarSearch from "./navbar/NavbarSearch";
+import NavbarSocials from "./navbar/NavbarSocials";
 
+//Submenus styles
 const textStyle = (level) => {
    switch (level) {
       case 1:
-         return "text-lg font-bold text-[#140eae]"
+         return "text-lg font-medium text-[#140eae]"
       case 2:
          return "text-base font-medium text-[#140eae]"
       case 3:
@@ -16,6 +19,7 @@ const textStyle = (level) => {
    }
 }
 
+/// Rotating Arrow Icon to toggle submenus
 const ArrowIcon = ({ isOpen }) => (
    <div className={`hover:text-[#ed1b24] transition-all duration-300 ease-in-out ${isOpen ? "rotate-180" : ""}`}>
       <svg
@@ -32,18 +36,21 @@ const ArrowIcon = ({ isOpen }) => (
       </svg>
    </div>
 )
+
+// when accesing the page from external sources check if submenu needs to be expanded
 const isDescendantActive = (item, currentSlug) => {
    if (item.slug.current === currentSlug) return true
    if (item.children) {
-     for (const child of item.children) {
-       if (isDescendantActive(child, currentSlug)) {
-         return true;
-       }
-     }
+      for (const child of item.children) {
+         if (isDescendantActive(child, currentSlug)) {
+            return true
+         }
+      }
    }
-   return false;
- };
+   return false
+}
 
+// Menu link with children
 const LinkWithChild = ({ item, level = 1 }) => {
 
    const router = useRouter()
@@ -51,25 +58,26 @@ const LinkWithChild = ({ item, level = 1 }) => {
    // Function to check if the current submenu should be initially open
    const isInitiallyOpen = () => {
       const currentSlug = router.asPath.split("/").pop()
-   
+
       const checkChildren = (children) => {
-      for (const child of children) {
-         if (child.slug.current === currentSlug) {
-            return true
+         for (const child of children) {
+            if (child.slug.current === currentSlug) {
+               return true
+            }
+            if (child.children && checkChildren(child.children)) {
+               return true
+            }
          }
-         if (child.children && checkChildren(child.children)) {
-            return true
-         }
+         return false
       }
-      return false
-      };
-   
+
       if (item.children) {
-      return checkChildren(item.children);
+         return checkChildren(item.children);
       }
       return false
    }
 
+   // state for submenu toggle
    const [isOpen, setIsOpen] = useState(isInitiallyOpen())
 
    const isActive = () => {
@@ -90,26 +98,26 @@ const LinkWithChild = ({ item, level = 1 }) => {
 
    return (
       <li className="relative">
-         <div className = { clsx(
-               textStyle(level),
-               "flex justify-between gap-2 items-center",
-               { "text-[#ed1b24]": isActive() }, // Apply color if the menu item is active
-               "hover:text-[#ed1b24]",
-             )}
+         <div className={clsx(
+            textStyle(level),
+            "flex justify-between gap-2 items-center",
+            { "text-[#ed1b24]": isActive() }, // Apply color if the menu item is active
+            "hover:text-[#ed1b24]",
+         )}
          >
-            <a  href={item.slug.current} onClick={handleClick} className={` transition-colors duration-200`}>
+            <Link href={item.slug.current} onClick={handleClick} className={` transition-colors duration-200`}>
                {item.title}
-            </a>
+            </Link>
             <div onClick={handleArrowClick} className="cursor-pointer">
                <ArrowIcon isOpen={isOpen} />
             </div>
          </div>
          <ul
             className={clsx(
-               "relative m-0 list-none p-0 pt-2 transition-all duration-300 ease-in-out space-y-2 pl-3 overflow-hidden",
+               "relative m-0 list-none p-0 transition-all duration-300 ease-in-out space-y-2 pl-3 overflow-hidden",
                {
                   "max-h-0 opacity-0 pt-0": !isOpen,
-                  "max-h-[1000px] opacity-100": isOpen,
+                  "max-h-[1000px] opacity-100 pt-2": isOpen,
                }
             )}
          >
@@ -126,7 +134,7 @@ const LinkWithChild = ({ item, level = 1 }) => {
 }
 
 const LinkWithoutChild = ({ item, level = 1 }) => {
-   
+
    const router = useRouter()
    const isActive = () => {
       const currentSlug = router.asPath.split("/").pop()
@@ -136,7 +144,7 @@ const LinkWithoutChild = ({ item, level = 1 }) => {
 
    return (
       <li className="relative">
-         <a href={item.slug.current} 
+         <Link href={item.slug.current}
             className={clsx(
                textStyle(level),
                { "text-[#ed1b24]": isActive() }, // Apply color if the menu item is active
@@ -144,7 +152,7 @@ const LinkWithoutChild = ({ item, level = 1 }) => {
             )}
          >
             {item.title}
-         </a>
+         </Link>
       </li>
    )
 }
@@ -156,7 +164,11 @@ export default function Menu({ items }) {
    }
 
    return (
-      <div>
+      <div className="bg-white text-gray-800 shadow-lg rounded-md p-4 h-fit">
+         <div className = 'block md:hidden mb-3.5'>
+            <NavbarSearch  />
+         </div>
+
          <nav>
             <ul className="relative m-0 list-none space-y-2">
                {items.map((item) =>
@@ -168,6 +180,10 @@ export default function Menu({ items }) {
                )}
             </ul>
          </nav>
+         <hr className='block lg:hidden text-[#140eae88] h-[2px] !my-5' />
+         <div className = 'flex justify-center gap-6 lg:!hidden mb-2 text-blue-200'>
+            <NavbarSocials />
+         </div>
       </div>
    )
 }

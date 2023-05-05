@@ -2,6 +2,33 @@
 /* Logo Blue:   #140eae   20,14,174 */
 /* Logo Red:   #ed1b24   237,27,36 */
 
+
+ @keyframes slide-in {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slide-out {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  
+  .animate-slide-in {
+    animation: slide-in 0.3s ease-out forwards;
+  }
+  
+  .animate-slide-out {
+    animation: slide-out 0.3s ease-out forwards;
+  }
+
 .navbar {
    color: #140eae;
    background-color: #fff;
