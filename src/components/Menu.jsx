@@ -9,7 +9,7 @@ import NavbarSocials from "./navbar/NavbarSocials";
 const textStyle = (level) => {
    switch (level) {
       case 1:
-         return "text-lg font-medium text-[#140eae]"
+         return "text-lg font-semibold text-[#140eae]"
       case 2:
          return "text-base font-medium text-[#140eae]"
       case 3:
@@ -51,7 +51,7 @@ const isDescendantActive = (item, currentSlug) => {
 }
 
 // Menu link with children
-const LinkWithChild = ({ item, level = 1 }) => {
+const LinkWithChild = ({ item, level = 1, currentFolder }) => {
 
    const router = useRouter()
 
@@ -96,6 +96,8 @@ const LinkWithChild = ({ item, level = 1 }) => {
       setIsOpen((prev) => !prev)
    }
 
+   const childFolder = currentFolder + item.slug.current + '/'
+
    return (
       <li className="relative">
          <div className={clsx(
@@ -105,7 +107,7 @@ const LinkWithChild = ({ item, level = 1 }) => {
             "hover:text-[#ed1b24]",
          )}
          >
-            <Link href={item.slug.current} onClick={handleClick} className={` transition-colors duration-200`}>
+            <Link href={currentFolder + item.slug.current} onClick={handleClick} className={` transition-colors duration-200`}>
                {item.title}
             </Link>
             <div onClick={handleArrowClick} className="cursor-pointer">
@@ -123,9 +125,9 @@ const LinkWithChild = ({ item, level = 1 }) => {
          >
             {item.children.map((child) =>
                child.children && child.children.length > 0 ? (
-                  <LinkWithChild item={child} key={child._id} level={level + 1} />
+                  <LinkWithChild item={child} key={child._id} currentFolder={childFolder} level={level + 1} />
                ) : (
-                  <LinkWithoutChild item={child} key={child._id} level={level + 1} />
+                  <LinkWithoutChild item={child} key={child._id} currentFolder={childFolder} level={level + 1} />
                )
             )}
          </ul>
@@ -133,7 +135,7 @@ const LinkWithChild = ({ item, level = 1 }) => {
    )
 }
 
-const LinkWithoutChild = ({ item, level = 1 }) => {
+const LinkWithoutChild = ({ item, level = 1, currentFolder }) => {
 
    const router = useRouter()
    const isActive = () => {
@@ -144,7 +146,8 @@ const LinkWithoutChild = ({ item, level = 1 }) => {
 
    return (
       <li className="relative">
-         <Link href={item.slug.current}
+         <Link 
+            href={currentFolder + item.slug.current}
             className={clsx(
                textStyle(level),
                { "text-[#ed1b24]": isActive() }, // Apply color if the menu item is active
@@ -173,9 +176,9 @@ export default function Menu({ items }) {
             <ul className="relative m-0 list-none space-y-2">
                {items.map((item) =>
                   item.children ? (
-                     <LinkWithChild item={item} key={item._id} />
+                     <LinkWithChild item={item} key={item._id} currentFolder='' />
                   ) : (
-                     <LinkWithoutChild item={item} key={item._id} />
+                     <LinkWithoutChild item={item} key={item._id} currentFolder='' />
                   )
                )}
             </ul>

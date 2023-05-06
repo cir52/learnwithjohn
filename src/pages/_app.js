@@ -2,28 +2,20 @@ import { SanityContextProvider } from '@/sanity/SanityContextProvider'
 import '@/styles/globals.css'
 import '@/styles/styles.css'
 
-import { Roboto } from "next/font/google";
-// import { useEffect } from 'react';
+import { Open_Sans } from 'next/font/google';
 
-const roboto = Roboto({ weight: "400", subsets: ["latin"] });
+const openS = Open_Sans({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+})
 
 export default function App({ Component, pageProps }) {
-  // useEffect(() => {
-  //   const use = async () => {
-  //     (await import('tw-elements')).default;
-  //   };
-  //   use();
-  // }, []);
-  
+
   return ( 
     <SanityContextProvider>
-        {/* <style jsx global>
-          {` html {
-            font-family: ${roboto.style.fontFamily};
-          }`}
-        </style> */}
-        
-      <Component {...pageProps} />
+      <div className={openS.className} >
+          <Component  {...pageProps} />
+      </div>
     </SanityContextProvider>
   )
 }

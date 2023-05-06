@@ -16,7 +16,7 @@ const NavbarSearch = () => {
   }
 
   return (
-    <div className = 'relative'>
+    <div className = 'relative text-[#140eae]'>
       <form
         onSubmit = {handleSearch}        
       >

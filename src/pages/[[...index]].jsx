@@ -7,8 +7,6 @@ import Search from '@/components/Search'
 import Sidebar from '@/components/Sidebar'
 import { useState } from 'react'
 
-const inter = Inter({ subsets: ['latin'] })
-
 export default function Home() {
 
   const [isSidebarVisible, setIsSidebarVisible] = useState(false)
@@ -26,7 +24,7 @@ export default function Home() {
   return (
     <>
       <Navbar onToggleSidebar={handleToggleSidebar} />
-      <div className={`mt-[5.25rem] mx-0 md:mx-3 flex justify-start`}>
+      <div className={`content mt-[4.5rem] pt-[0.75rem] mx-0 md:mx-0 md:pl-3 flex justify-start`}>
         <div
           className={`sidebar md:max-w-[30%] lg:max-w-[20%] transform-gpu transition-all duration-300 ease-in-out 
           md:!translate-x-0 md:!w-fit md:!overflow-visible md:!opacity-100          

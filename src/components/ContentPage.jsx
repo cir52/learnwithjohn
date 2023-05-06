@@ -1,41 +1,51 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { getContentPage } from '@/sanity/sanity-utils';
-import MyPortableText from './MyPortableText';
-import { useRouter } from 'next/router';
-import { SanityContext } from '@/sanity/SanityContextProvider';
+import React, { useState, useEffect, useContext } from 'react'
+import { getContentPage } from '@/sanity/sanity-utils'
+import MyPortableText from './MyPortableText'
+import { useRouter } from 'next/router'
+import { SanityContext } from '@/sanity/SanityContextProvider'
+import Breadcrumb from './Breadcrumbs'
 
 const ContentPage = () => {
 
-   const client = useContext(SanityContext);
-   const [pageData, setPageData] = useState(null);
-   const [slug, setSlug] = useState(null);
-   const router = useRouter();
+   const client = useContext(SanityContext)
+   const [pageData, setPageData] = useState(null)
+  
+   const router = useRouter()
+   let path = router.asPath
+
+   const [slug, setSlug] = useState(router.asPath.split("/").pop())
 
    useEffect(() => {
       if (router.query.index) {
-         setSlug(router.query.index[0]);
+         setSlug(router.query.index.pop())
+         path = router.asPath
       }
-   }, [router.query.index]);
+   }, [router])
 
    useEffect(() => {
       if (slug) {
          const fetchData = async () => {
-            const data = await getContentPage({client, slug});
-            setPageData(data);
+            const data = await getContentPage({client, slug})
+            setPageData(data)
          };
-         fetchData();
+         fetchData()
       }
-   }, [slug]);
+   }, [slug])
 
    if (!pageData) {
-      return <div className='loading'>Loading...</div>;
+      return <div className='loading'>Loading...</div>
    }
 
    return (
-      <>
-         <MyPortableText blocks={pageData.content} />
+      <> 
+         <nav>
+            <Breadcrumb currentUrl={path}/>
+         </nav>
+         <main className='main-content'>
+            <MyPortableText blocks={pageData.content} />
+         </main>
       </>
    );
 };
 
-export default ContentPage;
+export default ContentPage
