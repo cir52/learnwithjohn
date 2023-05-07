@@ -80,6 +80,7 @@ const LinkWithChild = ({ item, level = 1, currentFolder }) => {
    // state for submenu toggle
    const [isOpen, setIsOpen] = useState(isInitiallyOpen())
 
+   // check if the current list item is the active one
    const isActive = () => {
       const currentSlug = router.asPath.split("/").pop()
       const itemSlug = item.slug.current
@@ -89,13 +90,13 @@ const LinkWithChild = ({ item, level = 1, currentFolder }) => {
    const handleClick = async (e) => {
       e.preventDefault()
       setIsOpen((prev) => !prev)
-      await router.push(item.slug.current)
+      await router.push(currentFolder + item.slug.current)
    }
-
+   //toggle submenus open/close without navugating to new page
    const handleArrowClick = (e) => {
       setIsOpen((prev) => !prev)
    }
-
+   // add current foldername to url 
    const childFolder = currentFolder + item.slug.current + '/'
 
    return (

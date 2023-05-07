@@ -9,37 +9,36 @@ const ContentPage = () => {
 
    const client = useContext(SanityContext)
    const [pageData, setPageData] = useState(null)
-  
+
    const router = useRouter()
+
    let path = router.asPath
+   let slug = ''
 
-   const [slug, setSlug] = useState(router.asPath.split("/").pop())
-
+   //wait for router to be ready to get current slug and fetch data 
    useEffect(() => {
-      if (router.query.index) {
-         setSlug(router.query.index.pop())
-         path = router.asPath
-      }
-   }, [router])
+      if (router.isReady) {
 
-   useEffect(() => {
-      if (slug) {
-         const fetchData = async () => {
-            const data = await getContentPage({client, slug})
-            setPageData(data)
-         };
-         fetchData()
+         slug = router.query.index.pop()
+
+         if (slug) {
+            const fetchData = async () => {
+               const data = await getContentPage({ client, slug })
+               setPageData(data)
+            }
+            fetchData()
+         }
       }
-   }, [slug])
+   }, [router, slug])
 
    if (!pageData) {
       return <div className='loading'>Loading...</div>
    }
 
    return (
-      <> 
+      <>
          <nav>
-            <Breadcrumb currentUrl={path}/>
+            <Breadcrumb currentUrl={path} />
          </nav>
          <main className='main-content'>
             <MyPortableText blocks={pageData.content} />
