@@ -147,7 +147,7 @@ const LinkWithoutChild = ({ item, level = 1, currentFolder }) => {
 
    return (
       <li className="relative">
-         <Link 
+         <Link
             href={currentFolder + item.slug.current}
             className={clsx(
                textStyle(level),
@@ -169,8 +169,8 @@ export default function Menu({ items }) {
 
    return (
       <div className="bg-white text-gray-800 shadow-lg rounded-md p-4 h-fit">
-         <div className = 'block md:hidden mb-3.5'>
-            <NavbarSearch  />
+         <div className='block md:hidden mb-3.5'>
+            <NavbarSearch />
          </div>
 
          <nav>
@@ -185,7 +185,7 @@ export default function Menu({ items }) {
             </ul>
          </nav>
          <hr className='block lg:hidden text-[#140eae88] h-[2px] !my-5' />
-         <div className = 'flex justify-center gap-6 lg:!hidden mb-2 text-blue-200'>
+         <div className='flex justify-center gap-6 lg:!hidden mb-2 text-blue-200'>
             <NavbarSocials />
          </div>
       </div>

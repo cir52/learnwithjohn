@@ -9,30 +9,42 @@ const ContentPage = () => {
 
    const client = useContext(SanityContext)
    const [pageData, setPageData] = useState(null)
+   const [loading, setLoading] = useState(true)
+   const [currentSlug, setCurrentSlug] = useState('')
 
    const router = useRouter()
-
    let path = router.asPath
-   let slug = ''
 
-   //wait for router to be ready to get current slug and fetch data 
+   //wait for router to be ready to get current slug  
    useEffect(() => {
       if (router.isReady) {
-
-         slug = router.query.index.pop()
-
-         if (slug) {
-            const fetchData = async () => {
-               const data = await getContentPage({ client, slug })
-               setPageData(data)
-            }
-            fetchData()
+         const indexCopy = [...router.query.index];
+         const slug = indexCopy.pop();
+         setCurrentSlug(slug)
+         if (!slug) {
+            setLoading(false)
          }
       }
-   }, [router, slug])
+   }, [router])
+
+   //when current slug is ready, set fetch the data 
+   useEffect(() => {
+      if (currentSlug) {
+         const fetchData = async () => {
+            const data = await getContentPage({ client, slug: currentSlug })
+            setPageData(data)
+            setLoading(false)
+         }
+         fetchData()
+      }
+   }, [currentSlug])
+
+   if (loading) {
+      return <div className='loading'>Loading...</div>
+   }
 
    if (!pageData) {
-      return <div className='loading'>Loading...</div>
+      return <div className='error'>Error: Content not found - please try reloading the page</div>
    }
 
    return (
@@ -44,7 +56,7 @@ const ContentPage = () => {
             <MyPortableText blocks={pageData.content} />
          </main>
       </>
-   );
-};
+   )
+}
 
 export default ContentPage
