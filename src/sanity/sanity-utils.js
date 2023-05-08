@@ -1,6 +1,4 @@
 import { groq } from "next-sanity";
-import { useContext } from "react";
-import { SanityContext } from "./SanityContextProvider";
 
 export async function getNavbarMenu(client) {
   

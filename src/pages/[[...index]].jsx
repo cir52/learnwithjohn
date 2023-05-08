@@ -26,7 +26,7 @@ export default function Home() {
       <Navbar onToggleSidebar={handleToggleSidebar} />
       <div className={`content mt-[4.5rem] pt-[0.75rem] mx-0 md:mx-0 md:pl-3 flex justify-start`}>
         <div
-          className={`sidebar md:max-w-[30%] lg:max-w-[20%] transform-gpu transition-all duration-300 ease-in-out 
+          className={`sidebar md:max-w-[30%] lg:max-w-[25%] transform-gpu transition-all duration-300 ease-in-out 
           md:!translate-x-0 md:!w-fit md:!overflow-visible md:!opacity-100          
           ${isSidebarVisible ? 'translate-x-0 w-full overflow-visible opacity-100' : '-translate-x-full w-0 overflow-auto opacity-0'
             } md:translate-x-0 md:block`}
