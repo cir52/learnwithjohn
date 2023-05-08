@@ -11,14 +11,6 @@ const Search = ({query}) => {
    const [searchResults, setSearchResults] = useState(null)
 
 
-   useEffect(() => {
-      const fetchData = async () => {
-         const data = await getSearchResults(client)
-         setSearchResults(data);
-      }
-      fetchData()
-   }, [])
- 
  
    if (!searchResults) {
       return <div className='loading'>{query} Loading...</div>

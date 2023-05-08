@@ -128,7 +128,24 @@
 .navbar-search {
 
 }
-.navbar-search-input {
+.search-input-container  {
+
+}
+
+.search-input-container h3 {
+  font-size: 0.9rem;
+}
+.search-input-container ul {
+
+  border-radius: 5px;
+  width: 100%;
+  border: 1px solid rgb(191 219 254);
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  background-image: linear-gradient(180deg, #eaf9ff, #ffffff) ;
+
+}
+.search-input-container li {
 
 }
 

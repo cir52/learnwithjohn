@@ -20,7 +20,7 @@ const Navbar = ({ onToggleSidebar }) => {
     return (
         <div className='navbar h-[4.5rem] w-full fixed top-0 flex gap-4 justify-between items-center py-2 px-4 xl:pr-8 cursor-pointer'> 
             <div className='navbar-menu flex justify-between text-center items-center text-sm md:text-base'>
-                <Link href='/'>
+                <Link href='/' className='hidden md:block'>
                     <Image
                     className='cursor-pointer w-[60px] md:w-[70px]'
                     src={Logo}

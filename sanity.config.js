@@ -4,7 +4,7 @@ import navbar from '@/sanity/schemas/navbar'
 import socials from '@/sanity/schemas/socials'
 import {defineConfig} from 'sanity'
 import {deskTool} from 'sanity/desk'
-
+import {visionTool} from '@sanity/vision'
 
 
 const config = defineConfig({
@@ -18,7 +18,7 @@ const config = defineConfig({
   apiVersion: '2023-04-24',
   basePath: '/admin',
 
-  plugins: [deskTool()],
+  plugins: [deskTool(), visionTool()],
 
   schema: { types: [pages, home, navbar, socials] },
 

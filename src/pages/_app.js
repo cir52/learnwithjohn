@@ -2,7 +2,7 @@ import { SanityContextProvider } from '@/sanity/SanityContextProvider'
 import '@/styles/globals.css'
 import '@/styles/styles.css'
 
-import { Open_Sans } from 'next/font/google';
+import { Open_Sans } from 'next/font/google'
 
 const openS = Open_Sans({
   subsets: ['latin'],
