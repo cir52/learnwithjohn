@@ -7,8 +7,12 @@ import Sidebar from '@/components/Sidebar'
 import { useState } from 'react'
 import BlurBackground from '@/components/tools/BlurBackground'
 import LoginPage from '@/components/LoginPage'
+import { signOut, useSession } from 'next-auth/react'
 
 export default function Home() {
+
+  const { data: session } = useSession()
+  const expiredSession = session && new Date(session.expires) < new Date()
 
   const [isSidebarVisible, setIsSidebarVisible] = useState(false)
   const [showLoginPage, setShowLoginPage] = useState(false) 
@@ -17,7 +21,7 @@ export default function Home() {
     setIsSidebarVisible(visible)
   }
 
-  const handleToggleLoginPage = (visible) => {
+  const handleToggleLoginPage = (visible, expiredSession = false) => {
     setShowLoginPage(visible)
   }
 
@@ -34,9 +38,10 @@ export default function Home() {
         <Navbar 
             onToggleSidebar = {handleToggleSidebar} 
             onToggleLoginPage = {handleToggleLoginPage} 
+            session = { session}
         />
         <div 
-            className={`content mt-[4.5rem] pt-[0.75rem] mx-0 md:mx-0 md:pl-3 flex justify-start`}
+            className={`content w-full mt-[4.5rem] pt-[0.75rem] mx-0 md:mx-0 md:pl-3 flex justify-start`}
         >
           <div
             className={`sidebar md:max-w-[30%] lg:max-w-[25%] transform-gpu transition-all duration-300 ease-in-out md:!translate-x-0 md:!w-fit md:!overflow-visible md:!opacity-100 ${isSidebarVisible ? 'translate-x-0 w-full overflow-visible opacity-100' : '-translate-x-full w-0 overflow-auto opacity-0'} md:translate-x-0 md:block`}
@@ -57,7 +62,10 @@ export default function Home() {
       
       {showLoginPage && (
         <div className = "fixed inset-0 bg-blue-100 bg-opacity-50 flex items-center justify-center">          
-          <LoginPage onClose={() => setShowLoginPage(false)} />
+          <LoginPage 
+              expiredSession = {expiredSession}
+              onClose={() => setShowLoginPage(false)} 
+          />
         </div>
       )}
       </div>

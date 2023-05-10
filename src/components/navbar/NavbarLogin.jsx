@@ -1,12 +1,8 @@
-import { signOut, useSession } from 'next-auth/react'
-import Link from 'next/link'
+import { signOut } from 'next-auth/react'
 import React, { useState } from 'react'
 import { IoLogIn } from "react-icons/io5"
-import LoginPage from '../LoginPage'
 
-const NavbarLogin = ({ onToggleLoginPage }) => {
-  
-  const { data: session } = useSession()
+const NavbarLogin = ({ onToggleLoginPage, session }) => {
 
   //TODO:  Loading
   
