@@ -34,7 +34,7 @@ const NavbarSearch = () => {
       if (!searchResultsVisible) {
         setSearchResultsVisible(true)
       }
-    }, 300); // Adjust the debounce time as needed (500ms default)
+    }, 100); // Adjust the debounce time as needed (500ms default)
   };
 
   const router = useRouter();
@@ -92,7 +92,7 @@ const NavbarSearch = () => {
           <BiSearch className='hover:text-[#ed1b24] pt-[2px]' />
         </button>
         {searchResultsVisible && <ul
-          className='z-20 absolute text-[#140eae] shadow-lg max-h-[40vh] overflow-y-auto search-results-list px-[0.5rem] md:px-[0.8rem]'
+          className='search-results-list z-20 absolute text-[#140eae] shadow-lg max-h-[40vh] overflow-y-auto px-[0.5rem] md:px-[0.8rem]'
         > {searchResults.length > 0 ?
           searchResults.map((result) => (
             <li key={result.objectID}>

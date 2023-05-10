@@ -106,7 +106,6 @@
   }
 
 .content {
-
   background: linear-gradient(
       to bottom,
       transparent,
@@ -192,14 +191,33 @@
   scrollbar-color: rgb(214, 229, 235) #f5f5f5;
 }
 
+/* SEARCH PAGE results  */
 
-/* search results page */
 .search-result-container h1 {
   font-size: 1.4rem;
   margin-top: 0.8rem;
   font-weight: 500;
 }
 
+/* LOGIN PAGE container scrollbar */
+
+.login-page-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.login-page-container::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+  border-radius: 6px;
+}
+
+.login-page-container::-webkit-scrollbar-thumb {
+  background-color: rgb(214, 229, 235);
+  border-radius: 6px;
+}
+.login-page-container {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(214, 229, 235) #f5f5f5;
+}
 
 /* SIDEBAR */
 
