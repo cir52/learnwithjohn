@@ -82,7 +82,7 @@ const Search = ({ query }) => {
                </li>
             )) :
             <li>
-               <h3><b>0</b> Results for "{queryString}"</h3>
+               <h3><b>0</b> Results for {`"${queryString}"`}</h3>
             </li>
             }
          </ul>

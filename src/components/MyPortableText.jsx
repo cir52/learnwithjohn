@@ -1,8 +1,9 @@
-import PortableText from '@sanity/block-content-to-react';
+import PortableText from '@sanity/block-content-to-react'
 import React, { useContext } from 'react'
 import imageUrlBuilder from '@sanity/image-url'
 import Link from 'next/link'
-import { SanityContext } from '@/sanity/SanityContextProvider';
+import { SanityContext } from '@/sanity/SanityContextProvider'
+import Image from 'next/image'
 
 const MyPortableText = ( {blocks} ) => {
 
