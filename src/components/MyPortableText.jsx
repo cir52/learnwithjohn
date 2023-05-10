@@ -3,11 +3,10 @@ import React, { useContext } from 'react'
 import imageUrlBuilder from '@sanity/image-url'
 import Link from 'next/link'
 import { SanityContext } from '@/sanity/SanityContextProvider'
-import Image from 'next/image'
 
 const MyPortableText = ( {blocks} ) => {
 
-   const client = useContext(SanityContext);
+   const client = useContext(SanityContext)
 
    // Get a pre-configured url-builder from the sanity client
    const builder = imageUrlBuilder(client)
@@ -19,15 +18,15 @@ const MyPortableText = ( {blocks} ) => {
    const serializers = {
       types: {
          image: ({ node }) => {
-            const { asset, alt } = node;
+            const { asset, alt, width } = node;
             if (!asset || !asset._ref) {
                return null;
             }
             return (
                <figure>
-                  <img src={urlFor(node).url()} alt={alt} />
+                  <img src={urlFor(node).url()} alt={alt} width={width}/>
                </figure>
-            );
+            )
          }
       },
       marks: {
@@ -41,7 +40,19 @@ const MyPortableText = ( {blocks} ) => {
             return blank ?
                <Link href={href} target="_blank" rel="noopener">{children}</Link>
                : <Link href={href}>{children}</Link>
-         }
+         },
+         CustomStyle: ({ mark, children }) => {
+            const { customstyle } = mark
+            const styles = customstyle.split(';').reduce((acc, style) => {
+              const [property, value] = style.split(':')
+              if (property && value) {
+                acc[property.trim()] = value.trim()
+              }
+              return acc
+            }, {})
+          
+            return <span style={styles}>{children}</span>
+         }  
       }
    }
 
