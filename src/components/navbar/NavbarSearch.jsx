@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import React, { useState, useEffect, useRef } from 'react'
 import { BiSearch } from 'react-icons/bi'
 import algoliaIndex from '../../../algoliaClient'
+import Link from 'next/link';
 
 const NavbarSearch = () => {
 
@@ -41,6 +42,7 @@ const NavbarSearch = () => {
   const handleSearchSubmit = (e) => {
     e.preventDefault()
     if (searchValue) {
+      setSearchResultsVisible(false)
       router.push(`/search/${searchValue}`)
     }
   }
@@ -92,10 +94,10 @@ const NavbarSearch = () => {
         {searchResultsVisible && <ul
           className='z-20 absolute text-[#140eae] shadow-lg max-h-[40vh] overflow-y-auto search-results-list px-[0.5rem] md:px-[0.8rem]'
         > {searchResults.length > 0 ?
-            searchResults.map((result) => (
+          searchResults.map((result) => (
             <li key={result.objectID}>
               <h3>
-                <a href={`/${result.slug}`}>{result.title}</a>
+                <Link href={`/${result.slug}`}>{result.title}</Link>
               </h3>
               {/* handle the search result to show a small paragraph with the match */}
               {result._highlightResult.content && (
@@ -108,23 +110,23 @@ const NavbarSearch = () => {
                       let matchedSentenceIndex = -1;
                       let resultText = '';
 
-                      if (sentences) {                       
+                      if (sentences) {
                         // Find the index of the matched sentence                        
                         for (let i = 0; i < sentences.length; i++) {
-                          console.log(sentences[i] + ' ' + item.text.matchedWords[0])
+
                           if (sentences[i].toLowerCase().includes(item.text.matchedWords[0])) {
                             matchedSentenceIndex = i;
                             break;
                           }
-                        }                     
+                        }
 
                         if (matchedSentenceIndex !== -1) {
                           resultText = sentences[matchedSentenceIndex];
                           if (matchedSentenceIndex + 1 < sentences.length) {
                             resultText += ' ' + sentences[matchedSentenceIndex + 1];
                           }
-                        } 
-                      } 
+                        }
+                      }
                       // no sentences - so just get 50 characters before and after the match
                       else {
                         const matchPosition = item.text.value.indexOf(item.text.matchedWords[0]);
@@ -132,7 +134,7 @@ const NavbarSearch = () => {
                         const end = Math.min(item.text.value.length, matchPosition + item.text.matchedWords[0].length + 50);
                         resultText = (start > 0 ? '...' : '') + item.text.value.slice(start, end) + (end < item.text.value.length ? '...' : '');
                       }
-                      
+
                       return (
                         <span
                           key={index}
@@ -147,7 +149,7 @@ const NavbarSearch = () => {
             </li>
           )) :
           <li>
-            <h3>found 0 Results</h3>
+            <h3>0 Results</h3>
           </li>
           }
         </ul>

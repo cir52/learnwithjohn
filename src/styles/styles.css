@@ -21,8 +21,18 @@
    bottom: 0;
    width: 100%;
    height: 1px;
-   background-image: linear-gradient(to right, rgba(20, 14, 174, 0.4), rgba(20, 14, 174, 0.4));
+   background-image: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
  }
+
+ .main-content h1 a::after, .main-content h2 a::after, .main-content h3 a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(20, 14, 174, 0.4),  rgba(20, 14, 174, 0.4));
+}
 
 .main-content a:hover {
    color: #140eae;
@@ -56,10 +66,6 @@
    list-style-type: none;
    padding: 0.5rem 0;
 }
-
-/* .main-content li:not(:last-child) {
-   margin-bottom: 0.5rem;
-} */
 
 .main-content li {
    position: relative;
@@ -118,21 +124,6 @@
    z-index: 100;
 }
 
-.loading {
-   
-}
-
-.nav-container {
-
-}
-
-.navbar-menu {
-
-}
-.navbar-search {
-
-}
-
 
 /* Search reuslt preview container */
 
@@ -153,12 +144,12 @@
   margin: 0.5rem 0;
 
 }
-.search-input-container a {
+.search-input-container a, .search-result-container a {
   position: relative;
   text-decoration: none;
 }
 
-.search-input-container a::after {
+.search-input-container a::after, .search-result-container a::after {
   content: '';
   position: absolute;
   left: 0;
@@ -168,11 +159,11 @@
   background-image: linear-gradient(to right, rgba(20, 14, 174, 0.4), rgba(20, 14, 174, 0.4));
 }
 
-.search-input-container a:hover {
+.search-input-container a:hover, .search-result-container a:hover {
   color: #ed1b24;
 }
 
-.search-input-container a:hover::after {
+.search-input-container a:hover::after, .search-result-container a:hover::after{
   background-image: linear-gradient(to right, rgba( 237,27,36, 1.0), rgba( 237,27,36, 1.0));
 }
 
@@ -181,7 +172,7 @@
   font-style: normal;
 }
 
-/* Search reuslt preview container scrollbar */
+/* Search result preview container scrollbar */
 
 .search-results-list::-webkit-scrollbar {
   width: 6px;
@@ -202,13 +193,15 @@
 }
 
 
-
+/* search results page */
+.search-result-container h1 {
+  font-size: 1.4rem;
+  margin-top: 0.8rem;
+  font-weight: 500;
+}
 
 
 /* SIDEBAR */
-.sidebar {
-   
-}
 
 .menu-enter-active,
 .menu-leave-active {
@@ -221,9 +214,5 @@
   transform: translateY(-10px);
 }
 
-
-.navbar-socials {
-
-}
 
 

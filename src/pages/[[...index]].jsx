@@ -1,18 +1,24 @@
 import Navbar from '@/components/Navbar'
-import { Inter } from 'next/font/google'
 import { useRouter } from 'next/router'
 import HomePage from '@/components/HomePage'
 import ContentPage from '@/components/ContentPage'
 import Search from '@/components/Search'
 import Sidebar from '@/components/Sidebar'
 import { useState } from 'react'
+import BlurBackground from '@/components/tools/BlurBackground'
+import LoginPage from '@/components/LoginPage'
 
 export default function Home() {
 
   const [isSidebarVisible, setIsSidebarVisible] = useState(false)
+  const [showLoginPage, setShowLoginPage] = useState(false) 
 
   const handleToggleSidebar = (visible) => {
     setIsSidebarVisible(visible)
+  }
+
+  const handleToggleLoginPage = (visible) => {
+    setShowLoginPage(visible)
   }
 
   const router = useRouter()
@@ -23,25 +29,37 @@ export default function Home() {
 
   return (
     <>
-      <Navbar onToggleSidebar={handleToggleSidebar} />
-      <div className={`content mt-[4.5rem] pt-[0.75rem] mx-0 md:mx-0 md:pl-3 flex justify-start`}>
-        <div
-          className={`sidebar md:max-w-[30%] lg:max-w-[25%] transform-gpu transition-all duration-300 ease-in-out 
-          md:!translate-x-0 md:!w-fit md:!overflow-visible md:!opacity-100          
-          ${isSidebarVisible ? 'translate-x-0 w-full overflow-visible opacity-100' : '-translate-x-full w-0 overflow-auto opacity-0'
-            } md:translate-x-0 md:block`}
+    <div className='flex'>
+      <BlurBackground blur = {showLoginPage}>
+        <Navbar 
+            onToggleSidebar = {handleToggleSidebar} 
+            onToggleLoginPage = {handleToggleLoginPage} 
+        />
+        <div 
+            className={`content mt-[4.5rem] pt-[0.75rem] mx-0 md:mx-0 md:pl-3 flex justify-start`}
         >
-          <Sidebar />
+          <div
+            className={`sidebar md:max-w-[30%] lg:max-w-[25%] transform-gpu transition-all duration-300 ease-in-out md:!translate-x-0 md:!w-fit md:!overflow-visible md:!opacity-100 ${isSidebarVisible ? 'translate-x-0 w-full overflow-visible opacity-100' : '-translate-x-full w-0 overflow-auto opacity-0'} md:translate-x-0 md:block`}
+          >
+            <Sidebar />
+          </div>
+          <div className="mx-5 md:mx-10">
+            {path === '/' ? (
+              <HomePage />
+            ) : searchMatch ? (
+              <Search query={searchMatch[1]} />
+            ) : (
+              <ContentPage />
+            )}
+          </div>
         </div>
-        <div className="mx-5 md:mx-10">
-          {path === '/' ? (
-            <HomePage />
-          ) : searchMatch ? (
-            <Search query={searchMatch[1]} />
-          ) : (
-            <ContentPage />
-          )}
+      </BlurBackground>
+      
+      {showLoginPage && (
+        <div className = "fixed inset-0 bg-blue-100 bg-opacity-50 flex items-center justify-center">          
+          <LoginPage onClose={() => setShowLoginPage(false)} />
         </div>
+      )}
       </div>
     </>
   )
