@@ -8,7 +8,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Logo from '../../public/assets/images/Logo.jpg'
 
-const Navbar = ({ onToggleSidebar }) => {
+const Navbar = ({ onToggleSidebar, onToggleLoginPage }) => {
 
     const [isOpen, setIsOpen] = useState(false)
 
@@ -38,7 +38,9 @@ const Navbar = ({ onToggleSidebar }) => {
             </div>
             <div className='flex items-center gap-5'>
                 <div className='navbar-socials flex gap-2'>
-                    <NavbarLogin />
+                    <NavbarLogin 
+                        onToggleLoginPage={onToggleLoginPage} 
+                    />
                 </div>
 
                 <div className="block md:hidden">
