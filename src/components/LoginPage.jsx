@@ -108,6 +108,7 @@ const LoginPage = ({ onClose, expiredSession = false }) => {
                   !termsAccepted ? 'opacity-50 cursor-not-allowed' : ''
                 }`}
                 onClick={() => handleSignIn('google')}
+                disabled={!termsAccepted}
             >
               <Image
                     className='cursor-pointer w-[20px]'
@@ -120,7 +121,9 @@ const LoginPage = ({ onClose, expiredSession = false }) => {
                 className={`w-full flex items-center justify-center gap-4 py-2 px-4 shadow border border-blue-200 text-gray-700 font-semibold rounded-md bg-gradient-to-b from-blue-50 to-blue-200 hover:bg-gradient-to-b hover:from-blue-100 hover:to-blue-300 active:shadow-none ${
                   !termsAccepted ? 'opacity-50 cursor-not-allowed' : ''
                 }`}
-                onClick={() => handleSignIn('facebook')}>
+                onClick={() => handleSignIn('facebook')}
+                disabled={!termsAccepted}
+          >
               <Image
                     className='cursor-pointer w-[30px]'
                     src={FacebookLogo}
