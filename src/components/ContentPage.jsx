@@ -110,7 +110,7 @@ const ContentPage = () => {
                               {heading}
                            </a>
                            { (index < headings.length-1) &&
-                              <BsDiamondFill className='w-full text-[#cccccc] text-[0.4rem] mt-[0.4rem]' /> }
+                              <BsDiamondFill className='w-full text-blue-200 text-[0.4rem] mt-[0.4rem]' /> }
                         </li>
                      ))}
                   </ul>
