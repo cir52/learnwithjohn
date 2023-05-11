@@ -3,6 +3,15 @@ import React, { useContext } from 'react'
 import imageUrlBuilder from '@sanity/image-url'
 import Link from 'next/link'
 import { SanityContext } from '@/sanity/SanityContextProvider'
+import SanityBlockContent from '@sanity/block-content-to-react'
+
+const createValidId = (text) => {
+   return text
+     .toLowerCase()
+     .replace(/&/g, 'and') // Replace & with 'and'
+     .replace(/[^a-z0-9]+/g, '-') // Replace any other special characters with hyphens
+     .replace(/^-|-$/g, '') // Remove any leading or trailing hyphens
+ }
 
 const MyPortableText = ( {blocks} ) => {
 
@@ -27,7 +36,17 @@ const MyPortableText = ( {blocks} ) => {
                   <img src={urlFor(node).url()} alt={alt} width={width}/>
                </figure>
             )
-         }
+         },
+         block: (props) => {
+            // give h1 and ID for the page content menu
+            if (props.node.style === 'h1') {
+               const id = createValidId(props.node.children[0]?.text)
+               return <h1 id={id}>{props.children}</h1>
+            } else {
+               // Fallback for other block types
+               return SanityBlockContent.defaultSerializers.types.block(props)
+             }
+         },
       },
       marks: {
          internalLink: ({ mark, children }) => {
@@ -57,9 +76,9 @@ const MyPortableText = ( {blocks} ) => {
    }
 
   return (
-   <>
+   <div className='main-content'>
       <PortableText blocks={blocks} serializers={serializers} />
-   </>
+   </div>
   )
 }
 

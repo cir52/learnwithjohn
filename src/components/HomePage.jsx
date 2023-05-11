@@ -22,9 +22,9 @@ const HomePage = () => {
    }
 
    return (
-      <main className='main-content'>
+      <div className = 'mx-5 md:mx-10 mt-[-5.55rem]'>
          <MyPortableText blocks={home[0].content} />
-      </main>
+      </div>
    )
 }
 

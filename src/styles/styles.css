@@ -105,6 +105,7 @@
     animation: slide-out 0.3s ease-out forwards;
   }
 
+  /* CONTENT PAGE */
 .content {
   background: linear-gradient(
       to bottom,
@@ -112,6 +113,47 @@
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+}
+
+/* right side menu */
+
+.main-content h1::before {
+  content: '';
+  display: block;
+  height: 5.25rem;
+  margin-top: -5.25rem;
+  visibility: hidden;
+  pointer-events: none;
+}
+.right-menu {
+  list-style-type: none;
+}
+.right-menu.sticky {
+  top: 5.25rem;
+}
+.right-menu ul {
+  list-style-type: none;
+}
+.right-menu::before {
+  content: '';
+  display: block;
+  height: 5.25rem;
+  margin-top: -5.25rem;
+  visibility: hidden;
+  pointer-events: none;
+}
+.right-menu li {
+  list-style-type: none;
+  padding: 0 0 0.4rem 0;
+  margin: 0;
+}
+.right-menu a {
+  text-decoration: none;
+  color: #333;
+}
+.right-menu a:hover {
+  text-decoration: underline;
+  color: #140eae;
 }
 
 .navbar {

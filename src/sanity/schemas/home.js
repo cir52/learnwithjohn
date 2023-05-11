@@ -48,6 +48,18 @@ const home = {
                               ]
                            }
                         ]
+                     },
+                     {
+                        name: 'CustomStyle',
+                        type: 'object',
+                        title: 'Custom Style',
+                        fields: [
+                           {
+                              name: 'customstyle',
+                              type: 'string',
+                              title: 'Custom CSS Styles',
+                           }
+                        ]
                      }
                   ]
                }
@@ -60,6 +72,12 @@ const home = {
                      type: 'string',
                      title: 'Alternative text',
                      description: 'Important for SEO and accessiblity.',
+                  },
+                  {
+                     name: 'width',
+                     type: 'string',
+                     title: 'Imagewidth',
+                     description: 'Max width of the image as CSS (e.g. 200px / 2.0rem)',
                   },
                ],
             }
