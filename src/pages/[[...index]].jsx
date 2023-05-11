@@ -41,14 +41,14 @@ export default function Home() {
             session = { session}
         />
         <div 
-            className={`content w-full mt-[4.5rem] pt-[0.75rem] mx-0 md:mx-0 md:pl-3 flex justify-start`}
+            className={`content w-full absolute top-[4.5rem] pt-[0.75rem] mx-0 md:mx-0 md:px-3 flex justify-start`}
         >
           <div
             className={`sidebar md:max-w-[30%] lg:max-w-[25%] transform-gpu transition-all duration-300 ease-in-out md:!translate-x-0 md:!w-fit md:!overflow-visible md:!opacity-100 ${isSidebarVisible ? 'translate-x-0 w-full overflow-visible opacity-100' : '-translate-x-full w-0 overflow-auto opacity-0'} md:translate-x-0 md:block`}
           >
             <Sidebar />
           </div>
-          <div className="mx-5 md:mx-10">
+          <div>
             {path === '/' ? (
               <HomePage />
             ) : searchMatch ? (

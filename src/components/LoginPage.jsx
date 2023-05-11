@@ -50,7 +50,7 @@ const LoginPage = ({ onClose, expiredSession = false }) => {
   return (
 <div>
       <div
-        className="login-page-container max-h-[95vh] overflow-y-auto relative login-page w-full max-w-md bg-white px-5 py-3 bg-opacity-50 border border-white rounded-xl shadow-md"
+        className="login-page-container max-h-[95vh] overflow-y-auto relative login-page w-full max-w-md bg-white px-5 py-3 bg-opacity-70 border border-white rounded-xl shadow-md"
         ref={loginPageRef}
       >
         <button onClick={onClose} className="absolute top-3 right-4 text-2xl text-gray-600 hover:text-[#ed1b24]">
