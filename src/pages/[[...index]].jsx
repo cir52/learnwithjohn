@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 import BlurBackground from '@/components/tools/BlurBackground'
 import LoginPage from '@/components/LoginPage'
 import { signOut, useSession } from 'next-auth/react'
+import Search from '@/components/Search'
 
 export default function Home() {
 
