@@ -9,13 +9,13 @@ import NavbarSocials from "./navbar/NavbarSocials";
 const textStyle = (level) => {
    switch (level) {
       case 1:
-         return "text-lg font-semibold text-[#140eae]"
+         return "text-lg font-semibold text-[#020097d9]"
       case 2:
-         return "text-base font-medium text-[#140eae]"
+         return "text-base font-medium text-[#020097d9]"
       case 3:
-         return "text-sm font-normal text-[#140eae]"
+         return "text-sm font-normal text-[#020097d9]"
       default:
-         return "text-sm font-normal text-[#140eae]"
+         return "text-sm font-normal text-[#020097d9]"
    }
 }
 
@@ -104,11 +104,11 @@ const LinkWithChild = ({ item, level = 1, currentFolder }) => {
          <div className={clsx(
             textStyle(level),
             "flex justify-between gap-2 items-center",
-            { "text-[#ed1b24]": isActive() }, // Apply color if the menu item is active
+            { "!text-[#140eae] font-bold": isActive() }, // Apply color if the menu item is active
             "hover:text-[#ed1b24]",
          )}
          >
-            <Link href={currentFolder + item.slug.current} onClick={handleClick} className={` transition-colors duration-200`}>
+            <Link href={currentFolder + item.slug.current} onClick={handleClick}>
                {item.title}
             </Link>
             <div onClick={handleArrowClick} className="cursor-pointer">
@@ -116,7 +116,7 @@ const LinkWithChild = ({ item, level = 1, currentFolder }) => {
             </div>
          </div>
          <ul
-            className={clsx(
+            className = {clsx(
                "relative m-0 list-none p-0 transition-all duration-300 ease-in-out space-y-2 pl-3 overflow-hidden",
                {
                   "max-h-0 opacity-0 pt-0": !isOpen,
@@ -151,7 +151,7 @@ const LinkWithoutChild = ({ item, level = 1, currentFolder }) => {
             href={currentFolder + item.slug.current}
             className={clsx(
                textStyle(level),
-               { "text-[#ed1b24]": isActive() }, // Apply color if the menu item is active
+               { "!text-[#140eae] font-bold": isActive() }, // Apply color if the menu item is active
                "hover:text-[#ed1b24]"
             )}
          >
