@@ -6,7 +6,7 @@ import NavbarSocials from './navbar/NavbarSocials';
 import Hamburger from 'react-hamburger-menu'
 import Link from 'next/link';
 import Image from 'next/image';
-import Logo from '../../public/assets/images/Logo.jpg'
+import Logo from '../../public/assets/images/Logo.png'
 
 const Navbar = ({ onToggleSidebar, onToggleLoginPage }) => {
 
@@ -18,7 +18,7 @@ const Navbar = ({ onToggleSidebar, onToggleLoginPage }) => {
     }
 
     return (
-        <div className='navbar h-[4.5rem] w-full fixed top-0 flex gap-4 justify-between items-center py-2 px-4 xl:pr-8 cursor-pointer'> 
+        <div className='navbar h-[4.5rem] w-full fixed top-0 flex gap-4 justify-between items-center py-2 px-4 xl:pr-8'> 
             <div className='navbar-menu flex justify-between text-center items-center text-sm md:text-base'>
                 <Link href='/' className='hidden md:block'>
                     <Image
@@ -43,7 +43,7 @@ const Navbar = ({ onToggleSidebar, onToggleLoginPage }) => {
                     />
                 </div>
 
-                <div className="block md:hidden">
+                <div className="block md:hidden cursor-pointer">
                     <Hamburger 
                     isOpen={isOpen}
                     menuClicked={handleToggle}

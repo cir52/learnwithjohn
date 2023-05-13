@@ -78,7 +78,7 @@ const NavbarSearch = () => {
         onSubmit={handleSearchSubmit}
       >
         <input
-          className='w-full navbar-search-input bg-blue-50 md:pl-4 p-2 pr-[65px] md:text-md border border-blue-200 focus:outline-none focus:border-[#140eae55] rounded-xl md:rounded-full md:w-[200px] lg:w-[280px] xl:w-[350px] 2xl:w-[450px] placeholder-[#140eae66]'
+          className='w-full navbar-search-input bg-white md:pl-4 p-2 pr-[65px] md:text-md border border-blue-200 focus:outline-none focus:border-[#140eae55] rounded-xl md:rounded-full md:w-[200px] lg:w-[280px] xl:w-[350px] 2xl:w-[450px] placeholder-[#140eae66]'
           type='text'
           value={searchValue}
           onChange={handleSearch}
