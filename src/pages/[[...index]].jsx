@@ -2,9 +2,8 @@ import Navbar from '@/components/Navbar'
 import { useRouter } from 'next/router'
 import HomePage from '@/components/HomePage'
 import ContentPage from '@/components/ContentPage'
-import Search from '@/components/Search'
 import Sidebar from '@/components/Sidebar'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import BlurBackground from '@/components/tools/BlurBackground'
 import LoginPage from '@/components/LoginPage'
 import { signOut, useSession } from 'next-auth/react'
@@ -31,6 +30,10 @@ export default function Home() {
   const searchRegex = /^\/search(\/.*)?$/
   const searchMatch = path.match(searchRegex)
 
+  useEffect( () => {
+    handleToggleSidebar(false)
+  } , [path])
+
   return (
     <>
       <div className='gradient' />
@@ -39,6 +42,7 @@ export default function Home() {
         <Navbar 
             onToggleSidebar = {handleToggleSidebar} 
             onToggleLoginPage = {handleToggleLoginPage} 
+            isSidebarVisible = {isSidebarVisible}
             session = { session}
         />
         <div 
