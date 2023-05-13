@@ -97,7 +97,7 @@ const NavbarSearch = () => {
           searchResults.map((result) => (
             <li key={result.objectID}>
               <h3>
-                <Link href={`/${result.slug}`}>{result.title}</Link>
+                <Link href={`/${result.slug}`} onClick={() => setSearchResultsVisible(false)}>{result.title}</Link>
               </h3>
               {/* handle the search result to show a small paragraph with the match */}
               {result._highlightResult.content && (
