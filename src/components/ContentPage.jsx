@@ -97,7 +97,7 @@ const ContentPage = () => {
             </div>
          
             {(headings.length > 4) &&  
-               <aside className='right-menu sticky hidden h-fit lg:block max-w-[20vw] w-full shadow-md bg-white rounded-md font-[400]'>
+               <aside className='right-menu sticky hidden h-fit lg:block max-w-[20vw] w-full shadow-md bg-[#ffffff88] rounded-md font-[400] z-10'>
                   <ul className='!py-[0.8rem] !px-[1.5rem] m-0 text-center text-sm'>
                      {headings.map((heading, index) => (
                         <li   className='mb-[0.5rem]'

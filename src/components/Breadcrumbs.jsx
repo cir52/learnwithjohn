@@ -27,7 +27,7 @@ const Breadcrumb = ({ currentUrl }) => {
    })
 
    return (
-      <nav className='breadcrumbs flex items-center gap-[6px] mt-[1.25rem] text-[#140eae] text-sm'>
+      <nav className='breadcrumbs flex items-center gap-[6px] mt-[1.25rem] text-[#333] text-sm'>
          <Link
             className='hover:text-[#ed1b24]'
             href="/"

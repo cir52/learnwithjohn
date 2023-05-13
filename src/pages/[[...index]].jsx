@@ -33,6 +33,7 @@ export default function Home() {
 
   return (
     <>
+      <div className='gradient' />
     <div className='flex'>
       <BlurBackground blur = {showLoginPage}>
         <Navbar 
@@ -48,7 +49,8 @@ export default function Home() {
           >
             <Sidebar />
           </div>
-          <div>
+          <div className = {`${isSidebarVisible ? 'w-0' : 'w-auto'} md:!w-auto`}>
+          
             {path === '/' ? (
               <HomePage />
             ) : searchMatch ? (

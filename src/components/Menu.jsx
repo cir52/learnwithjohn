@@ -168,7 +168,7 @@ export default function Menu({ items }) {
    }
 
    return (
-      <div className="bg-white text-gray-800 shadow-lg rounded-md p-4 h-fit">
+      <div className="bg-white mx-4 md:mx-0 text-gray-800 shadow-lg rounded-md p-4 h-fit">
          <div className='block md:hidden mb-3.5'>
             <NavbarSearch />
          </div>
