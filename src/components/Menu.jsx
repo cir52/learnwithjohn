@@ -104,7 +104,7 @@ const LinkWithChild = ({ item, level = 1, currentFolder }) => {
          <div className={clsx(
             textStyle(level),
             "flex justify-between gap-2 items-center",
-            { "!text-[#140eae] font-bold": isActive() }, // Apply color if the menu item is active
+            { "!text-[#140eae] !font-bold": isActive() }, // Apply color if the menu item is active
             "hover:text-[#ed1b24]",
          )}
          >
@@ -151,7 +151,7 @@ const LinkWithoutChild = ({ item, level = 1, currentFolder }) => {
             href={currentFolder + item.slug.current}
             className={clsx(
                textStyle(level),
-               { "!text-[#140eae] font-bold": isActive() }, // Apply color if the menu item is active
+               { "!text-[#140eae] !font-bold": isActive() }, // Apply color if the menu item is active
                "hover:text-[#ed1b24]"
             )}
          >
