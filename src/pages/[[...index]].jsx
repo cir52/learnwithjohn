@@ -54,7 +54,7 @@ export default function Home() {
           >
             <Sidebar />
           </div>
-          <div className = {`${isSidebarVisible ? 'w-0' : 'w-auto'} md:!w-auto`}>
+          <div className = {`${isSidebarVisible ? 'hidden w-0' : 'w-auto'} md:!w-auto`}>
           
             {path === '/' ? (
               <HomePage />
