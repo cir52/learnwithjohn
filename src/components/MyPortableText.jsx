@@ -38,7 +38,7 @@ const MyPortableText = ( {blocks} ) => {
             )
          },
          block: (props) => {
-            // give h1 and ID for the page content menu
+            // give h1 an ID for the page content menu
             if (props.node.style === 'h1') {
                const id = createValidId(props.node.children[0]?.text)
                return <h1 id={id}>{props.children}</h1>
