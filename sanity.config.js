@@ -12,8 +12,8 @@ const config = defineConfig({
   name: 'default',
   title: 'Sanity Admin',
 
-  projectId: 'uf77088s',
-  dataset: 'production',
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
 
   apiVersion: '2023-04-24',
   basePath: '/admin',

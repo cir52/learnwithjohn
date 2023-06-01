@@ -15,7 +15,7 @@ const Navbar = ({ onToggleSidebar, onToggleLoginPage, isSidebarVisible }) => {
     }
 
     return (
-        <div className='navbar h-[4.5rem] w-full fixed top-0 flex gap-4 justify-between items-center py-2 px-4 xl:pr-8'>
+        <div className='navbar h-[4.5rem] w-full fixed top-0 flex gap-2 sm:gap-4 justify-between items-center py-2 px-3 sm:px-4 xl:pr-8'>
             <div className='navbar-menu flex justify-between text-center items-center text-sm md:text-base'>
                 <Link href='/' className='hidden md:block'>
                     <Image
