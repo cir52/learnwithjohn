@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import { SanityContext } from '@/sanity/SanityContextProvider'
 import Breadcrumb from './Breadcrumbs'
 import { BsDiamondFill } from 'react-icons/bs'
+import Head from 'next/head'
 
 //load smoot scrolling effect on client side only
 if (typeof window !== 'undefined') {
@@ -89,7 +90,11 @@ const ContentPage = () => {
    const headings = extractHeadings(pageData.content)
 
    return (
-      <>       
+      <>  
+         <Head>
+            <title>{pageData.pagetitle}</title>
+            <meta name='description' content={pageData.pagedescription} />
+        </Head> 
          <main className = 'flex flex-row'>
             <div className = 'mx-5 md:mx-10'>
                <Breadcrumb currentUrl={path} />
