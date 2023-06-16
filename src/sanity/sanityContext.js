@@ -6,11 +6,13 @@ const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET;
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
 const useCdn = false;
 const token = process.env.NEXT_PUBLIC_SANITY_TOKEN;
+const ignoreBrowserTokenWarning = true;
 
 export const sanityClient = createClient({
   apiVersion,
   dataset,
   projectId,
   useCdn,
-  token
+  token,
+  ignoreBrowserTokenWarning
 })

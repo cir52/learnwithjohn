@@ -78,6 +78,8 @@ export async function getContentPage({client, slug}) {
      *[(_type == "page" || _type == "navbar") && slug.current == $slug][0] {
        _id,
        title,
+       pagetitle,
+       pagedescription,
        content[]{
         ...,
         markDefs[]{

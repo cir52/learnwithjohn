@@ -4,8 +4,20 @@ const pages = {
    title: 'Pages',
    fields: [
       {
+         name: 'pagetitle',
+         title: 'PageTitle',
+         type: 'string',
+         description: 'Shown in Browser and SE.',
+      },
+      {
          name: 'title',
          title: 'Title',
+         type: 'string',
+         description: 'Shown in Menu.',
+      },
+      {
+         name: 'pagedescription',
+         title: 'HTML Description',
          type: 'string'
       },
       {
@@ -67,6 +79,7 @@ const pages = {
                               name: 'customstyle',
                               type: 'string',
                               title: 'Custom CSS Styles',
+                              description : 'see https://www.w3schools.com/jsref/dom_obj_style.asp for available styles',
                            }
                         ]
                      }
