@@ -1,29 +1,12 @@
 
-import React, { useContext } from 'react'
-import { getHome } from '@/sanity/sanity-utils';
+import React from 'react'
 import MyPortableText from './MyPortableText';
-import { SanityContext } from '@/sanity/SanityContextProvider';
 
-const HomePage = () => {
-
-   const client = useContext(SanityContext);
-   const [home, setHome] = React.useState(null);
-
-   React.useEffect(() => {
-      const fetchData = async () => {
-         const data = await getHome(client)
-         setHome(data);
-      };
-      fetchData();
-   }, []);
-
-   if (!home) {
-      return <div className='loading'>Loading...</div>;
-   }
+const HomePage = ({homeData}) => {
 
    return (
-      <div className = 'mx-5 md:mx-10 mt-[-5.55rem]'>
-         <MyPortableText blocks={home[0].content} />
+      <div className = 'mx-5 md:mx-10'>
+         <MyPortableText blocks={homeData[0].content} />
       </div>
    )
 }

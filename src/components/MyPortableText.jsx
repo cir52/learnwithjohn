@@ -1,9 +1,9 @@
 import PortableText from '@sanity/block-content-to-react'
-import React, { useContext } from 'react'
+import React from 'react'
 import imageUrlBuilder from '@sanity/image-url'
 import Link from 'next/link'
-import { SanityContext } from '@/sanity/SanityContextProvider'
 import SanityBlockContent from '@sanity/block-content-to-react'
+import { sanityClient } from '@/sanity/sanityContext'
 
 const createValidId = (text) => {
    return text
@@ -15,10 +15,8 @@ const createValidId = (text) => {
 
 const MyPortableText = ( {blocks} ) => {
 
-   const client = useContext(SanityContext)
-
    // Get a pre-configured url-builder from the sanity client
-   const builder = imageUrlBuilder(client)
+   const builder = imageUrlBuilder(sanityClient)
 
    function urlFor(source) {
       return builder.image(source)

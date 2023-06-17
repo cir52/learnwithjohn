@@ -116,7 +116,7 @@ const LinkWithChild = ({ item, level = 1, currentFolder }) => {
             </div>
          </div>
          <ul
-            className = {clsx(
+            className={clsx(
                "relative m-0 list-none p-0 transition-all duration-300 ease-in-out space-y-2 pl-3 overflow-hidden",
                {
                   "max-h-0 opacity-0 pt-0": !isOpen,
@@ -161,9 +161,9 @@ const LinkWithoutChild = ({ item, level = 1, currentFolder }) => {
    )
 }
 
-export default function Menu({ items }) {
+export default function Menu({ menuData, navbarSocialsData }) {
 
-   if (!items) {
+   if (!menuData) {
       return <div className="loading">Loading...</div>
    }
 
@@ -175,7 +175,7 @@ export default function Menu({ items }) {
 
          <nav>
             <ul className="relative m-0 list-none space-y-2">
-               {items.map((item) =>
+               {menuData.map((item) =>
                   item.children ? (
                      <LinkWithChild item={item} key={item._id} currentFolder='' />
                   ) : (
@@ -186,7 +186,7 @@ export default function Menu({ items }) {
          </nav>
          <hr className='block lg:hidden text-[#140eae88] h-[2px] !my-5' />
          <div className='flex justify-center gap-6 lg:!hidden mb-2 text-blue-200'>
-            <NavbarSocials />
+            <NavbarSocials navbarSocialsData={navbarSocialsData} />
          </div>
       </div>
    )

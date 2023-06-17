@@ -1,4 +1,4 @@
-import { SanityContextProvider } from '@/sanity/SanityContextProvider'
+
 import '@/styles/globals.css'
 import '@/styles/styles.css'
 import { SessionProvider } from "next-auth/react"
@@ -13,11 +13,11 @@ export default function App({ session, Component, pageProps }) {
 
   return ( 
     <SessionProvider session={session}>
-      <SanityContextProvider>
+
         <div className={openS.className} >
             <Component  {...pageProps} />
         </div>
-      </SanityContextProvider>
+
     </SessionProvider>
   )
 }

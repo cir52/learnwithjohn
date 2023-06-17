@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import NavbarMenu from './navbar/NavbarMenu';
 import NavbarSearch from './navbar/NavbarSearch';
 import NavbarLogin from './navbar/NavbarLogin';
@@ -8,7 +8,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Logo from '../../public/assets/images/Logo.png'
 
-const Navbar = ({ onToggleSidebar, onToggleLoginPage, isSidebarVisible }) => {
+const Navbar = ({ onToggleSidebar, onToggleLoginPage, isSidebarVisible, navbarMenuData, navbarSocialsData }) => {
 
     const handleToggle = () => {
         onToggleSidebar(!isSidebarVisible)
@@ -24,14 +24,14 @@ const Navbar = ({ onToggleSidebar, onToggleLoginPage, isSidebarVisible }) => {
                         alt='Home'
                     />
                 </Link>
-                <NavbarMenu />
+                <NavbarMenu navbarMenuData={navbarMenuData} />
             </div>
             <div className='hidden md:block'>
                 <NavbarSearch />
             </div>
 
             <div className='navbar-socials hidden lg:flex xl:gap-10 2xl:gap-16 gap-6 justify-around mx-5 items-center'>
-                <NavbarSocials />
+                <NavbarSocials navbarSocialsData={navbarSocialsData} />
             </div>
             <div className='flex items-center gap-5'>
                 <div className='navbar-socials flex gap-2'>
@@ -39,7 +39,6 @@ const Navbar = ({ onToggleSidebar, onToggleLoginPage, isSidebarVisible }) => {
                         onToggleLoginPage={onToggleLoginPage}
                     />
                 </div>
-
                 <div className="block md:hidden cursor-pointer">
                     <Hamburger
                         isOpen={isSidebarVisible}
