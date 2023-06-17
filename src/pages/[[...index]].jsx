@@ -13,8 +13,8 @@ import Menu from '@/components/Menu'
 
 export default function Home({ pageData, homeData, navbarSocialsData, navbarMenuData, menuData }) {
 
-  const { data: session } = useSession()
-  const expiredSession = session && new Date(session.expires) < new Date()
+  // const { data: session } = useSession()
+  // const expiredSession = session && new Date(session.expires) < new Date()
 
   const [isSidebarVisible, setIsSidebarVisible] = useState(false)
   const [showLoginPage, setShowLoginPage] = useState(false)
@@ -46,7 +46,7 @@ export default function Home({ pageData, homeData, navbarSocialsData, navbarMenu
             onToggleSidebar={handleToggleSidebar}
             onToggleLoginPage={handleToggleLoginPage}
             isSidebarVisible={isSidebarVisible}
-            session={session}
+            // session={session}
             navbarSocialsData={navbarSocialsData}
             navbarMenuData={navbarMenuData}
           />
