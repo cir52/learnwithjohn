@@ -17,13 +17,13 @@ const Navbar = ({ onToggleSidebar, onToggleLoginPage, isSidebarVisible, navbarMe
     return (
         <div className='navbar h-[4.5rem] w-full fixed top-0 flex gap-2 sm:gap-4 justify-between items-center py-2 px-3 sm:px-4 xl:pr-8'>
             <div className='navbar-menu flex justify-between text-center items-center text-sm md:text-base'>
-                <Link href='/' className='hidden md:block'>
+                <a href='/' className='hidden md:block'>
                     <Image
                         className='cursor-pointer w-[60px] md:w-[70px]'
                         src={Logo}
                         alt='Home'
                     />
-                </Link>
+                </a>
                 <NavbarMenu navbarMenuData={navbarMenuData} />
             </div>
             <div className='hidden md:block'>
