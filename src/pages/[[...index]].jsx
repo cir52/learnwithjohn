@@ -90,9 +90,11 @@ export async function getServerSideProps(context) {
   let pageData = null;
   let homeData = null;
 
-  let navbarSocialsData = await getNavbarSocials(sanityClient) || [];
-  let navbarMenuData = await getNavbarMenu(sanityClient) || [];
-  let menuData = await getMenuStructure(sanityClient) || [];
+  const [navbarSocialsData, navbarMenuData, menuData] = await Promise.all([
+    getNavbarSocials(sanityClient),
+    getNavbarMenu(sanityClient),
+    getMenuStructure(sanityClient)
+  ]);
 
   // Check if index is defined
   if (index) {
