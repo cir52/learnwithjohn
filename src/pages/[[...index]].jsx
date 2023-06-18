@@ -91,17 +91,17 @@ export async function getServerSideProps(context) {
   let pageData = null;
   let homeData = null;
 
-  let navbarSocialsData = await getNavbarSocials(sanityClient) || null;
-  let navbarMenuData = await getNavbarMenu(sanityClient) || null;
-  let menuData = await getMenuStructure(sanityClient)
+  let navbarSocialsData = await getNavbarSocials(sanityClient) || [];
+  let navbarMenuData = await getNavbarMenu(sanityClient) || [];
+  let menuData = await getMenuStructure(sanityClient) || [];
 
   // Check if index is defined
   if (index) {
     const indexCopy = [...index];
     slug = indexCopy.pop();
-    pageData = await getContentPage({ client: sanityClient, slug: slug })
+    pageData = await getContentPage({ client: sanityClient, slug: slug }) || null
   } else {
-    homeData = await getHome(sanityClient)
+    homeData = await getHome(sanityClient) || null
   }
 
   return {
