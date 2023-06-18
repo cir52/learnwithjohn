@@ -8,7 +8,7 @@ import LoginPage from '@/components/LoginPage'
 import { signOut, useSession } from 'next-auth/react'
 import Search from '@/components/Search'
 import { sanityClient } from '@/sanity/sanityContext'
-import { getContentPage, getHome, getNavbarSocials, getNavbarMenu, getMenuStructure } from '@/sanity/sanity-utils'
+import { getContentPage, getHome, getMultipleData } from '@/sanity/sanity-utils'
 import Menu from '@/components/Menu'
 
 export default function Home({ pageData, homeData, navbarSocialsData, navbarMenuData, menuData }) {
@@ -90,11 +90,7 @@ export async function getServerSideProps(context) {
   let pageData = null;
   let homeData = null;
 
-  const [navbarSocialsData, navbarMenuData, menuData] = await Promise.all([
-    getNavbarSocials(sanityClient),
-    getNavbarMenu(sanityClient),
-    getMenuStructure(sanityClient)
-  ]);
+  const fetchedData = await getMultipleData(sanityClient);
 
   // Check if index is defined
   if (index) {
@@ -109,9 +105,9 @@ export async function getServerSideProps(context) {
     props: {
       pageData: pageData,
       homeData: homeData,
-      navbarSocialsData: navbarSocialsData,
-      navbarMenuData: navbarMenuData,
-      menuData: menuData,
+      navbarSocialsData: fetchedData.navbarSocialsData || [],
+      navbarMenuData: fetchedData.navbarMenuData || [],
+      menuData: fetchedData.menuData || [],
       path: context.resolvedUrl
     },
   }

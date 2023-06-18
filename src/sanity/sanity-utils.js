@@ -94,3 +94,34 @@ export async function getContentPage({client, slug}) {
     { slug }
   )
 }
+
+
+export async function getMultipleData(client) {
+  return client.fetch(
+    groq`
+      {
+        "navbarMenuData": *[_type == "navbar"] {
+          _id,
+          title,
+          slug
+        },
+        "navbarSocialsData": *[_type == "social"] {
+          _id,
+          title,
+          icon,
+          link
+        },
+        "menuData": *[_type == "page" && !defined(parent)] {
+          _id,
+          title,
+          slug,
+          "children": *[_type == "page" && references(^._id) && parent._ref == ^._id] {
+            _id,
+            title,
+            slug
+          }
+        }
+      }
+    `
+  )
+}
