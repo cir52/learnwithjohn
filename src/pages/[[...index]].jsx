@@ -29,7 +29,6 @@ export default function Home({ pageData, homeData, navbarSocialsData, navbarMenu
 
   const router = useRouter()
   const path = router.asPath
-
   const searchRegex = /^\/search(\/.*)?$/
   const searchMatch = path.match(searchRegex)
 
@@ -102,7 +101,6 @@ export async function getServerSideProps(context) {
     pageData = await getContentPage({ client: sanityClient, slug: slug }) || null
   } else {
     homeData = await getHome(sanityClient) || null
-    console.log('homeData in getServerSideProps:', homeData);
   }
 
   return {

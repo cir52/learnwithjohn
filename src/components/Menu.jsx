@@ -92,7 +92,7 @@ const LinkWithChild = ({ item, level = 1, currentFolder }) => {
       setIsOpen((prev) => !prev)
       await router.push(currentFolder + item.slug.current)
    }
-   //toggle submenus open/close without navugating to new page
+   //toggle submenus open/close without navigating to new page
    const handleArrowClick = (e) => {
       setIsOpen((prev) => !prev)
    }
@@ -172,7 +172,6 @@ export default function Menu({ menuData, navbarSocialsData }) {
          <div className='block md:hidden mb-3.5'>
             <NavbarSearch />
          </div>
-
          <nav>
             <ul className="relative m-0 list-none space-y-2">
                {menuData.map((item) =>
