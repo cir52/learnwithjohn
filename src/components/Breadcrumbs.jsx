@@ -28,12 +28,12 @@ const Breadcrumb = ({ currentUrl }) => {
 
    return (
       <nav className='breadcrumbs flex items-center gap-[6px] mt-[1.25rem] text-[#0e0b67] text-sm'>
-         <Link
+         <a
             className='hover:text-[#ed1b24]'
             href="/"
          >
             <IoHome />
-         </Link>
+         </a>
          {breadcrumbItems.length > 0 && '/'}
          {breadcrumbItems}
       </nav>
