@@ -46,16 +46,23 @@
 .main-content h1 {
    margin-top: 1.0rem;
    margin-bottom : 1.0rem;
-   font-size: 1.5rem;
-   color: #343434;
+   font-size: 18pt;
+   color: #5B9BD5;
    font-weight: 600;
 }
 .main-content h2 {
    margin-top: 1.0rem;
    margin-bottom : 0.7rem;
-   font-size: 1.3rem;
-   color: #2b2b2b;
+   font-size: 16pt;
+   color: #5B9BD5;
    font-weight: 500;
+}
+.main-content h3 {
+  margin-top: 1.0rem;
+  margin-bottom : 0.7rem;
+  font-size: 14pt;
+  color: #5B9BD5;
+  font-weight: 500;
 }
 .main-content ul {
    list-style-type: none;

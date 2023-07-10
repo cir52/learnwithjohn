@@ -1,5 +1,5 @@
 import PortableText from '@sanity/block-content-to-react'
-import React from 'react'
+import React, { useEffect } from 'react'
 import imageUrlBuilder from '@sanity/image-url'
 import Link from 'next/link'
 import SanityBlockContent from '@sanity/block-content-to-react'
@@ -7,13 +7,13 @@ import { sanityClient } from '@/sanity/sanityContext'
 
 const createValidId = (text) => {
    return text
-     .toLowerCase()
-     .replace(/&/g, 'and') // Replace & with 'and'
-     .replace(/[^a-z0-9]+/g, '-') // Replace any other special characters with hyphens
-     .replace(/^-|-$/g, '') // Remove any leading or trailing hyphens
- }
+      .toLowerCase()
+      .replace(/&/g, 'and') // Replace & with 'and'
+      .replace(/[^a-z0-9]+/g, '-') // Replace any other special characters with hyphens
+      .replace(/^-|-$/g, '') // Remove any leading or trailing hyphens
+}
 
-const MyPortableText = ( {blocks} ) => {
+const MyPortableText = ({ blocks }) => {
 
    // Get a pre-configured url-builder from the sanity client
    const builder = imageUrlBuilder(sanityClient)
@@ -31,7 +31,7 @@ const MyPortableText = ( {blocks} ) => {
             }
             return (
                <figure>
-                  <img src={urlFor(node).url()} alt={alt} width={width}/>
+                  <img src={urlFor(node).url()} alt={alt} width={width} />
                </figure>
             )
          },
@@ -43,10 +43,20 @@ const MyPortableText = ( {blocks} ) => {
             } else {
                // Fallback for other block types
                return SanityBlockContent.defaultSerializers.types.block(props)
-             }
+            }
          },
       },
       marks: {
+         code: ({ mark, children }) => {
+            const htmlString = String(children).trim();
+            return (
+               <span
+                  dangerouslySetInnerHTML={{
+                     __html: htmlString,
+                  }}
+               ></span>
+            );
+         },
          internalLink: ({ mark, children }) => {
             const { slug = {} } = mark
             const href = `/${slug.current}`
@@ -61,23 +71,23 @@ const MyPortableText = ( {blocks} ) => {
          CustomStyle: ({ mark, children }) => {
             const { customstyle } = mark
             const styles = customstyle.split(';').reduce((acc, style) => {
-              const [property, value] = style.split(':')
-              if (property && value) {
-                acc[property.trim()] = value.trim()
-              }
-              return acc
+               const [property, value] = style.split(':')
+               if (property && value) {
+                  acc[property.trim()] = value.trim()
+               }
+               return acc
             }, {})
-          
+
             return <span style={styles}>{children}</span>
-         }  
+         }
       }
    }
 
-  return (
-   <div className='main-content'>
-      <PortableText blocks={blocks} serializers={serializers} />
-   </div>
-  )
+   return (
+      <div className='main-content'>
+         <PortableText blocks={blocks} serializers={serializers} />
+      </div>
+   )
 }
 
 export default MyPortableText
