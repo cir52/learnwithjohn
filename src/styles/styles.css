@@ -77,6 +77,10 @@
    margin-bottom: 0.5rem;
 }
 
+.HTMLBlock p {
+  padding: unset; 
+}
+
 /* ================================================================= */
 .gradient {
   height: fit-content;
@@ -128,7 +132,7 @@
 /* right side menu */
 
 .breadcrumbs {
-  
+  margin-bottom: 1.25rem;
 }
 
 .main-content h1::before {

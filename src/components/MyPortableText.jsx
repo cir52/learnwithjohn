@@ -4,6 +4,7 @@ import imageUrlBuilder from '@sanity/image-url'
 import Link from 'next/link'
 import SanityBlockContent from '@sanity/block-content-to-react'
 import { sanityClient } from '@/sanity/sanityContext'
+import parse from 'html-react-parser';
 
 const createValidId = (text) => {
    return text
@@ -36,27 +37,35 @@ const MyPortableText = ({ blocks }) => {
             )
          },
          block: (props) => {
-            // give h1 an ID for the page content menu
-            if (props.node.style === 'h1') {
-               const id = createValidId(props.node.children[0]?.text)
-               return <h1 id={id}>{props.children}</h1>
-            } else {
-               // Fallback for other block types
-               return SanityBlockContent.defaultSerializers.types.block(props)
+            switch (props.node.style){
+               // give h1 an ID for the page content menu
+               case 'h1': {
+                  const id = createValidId(props.node.children[0]?.text)
+                  return <h1 id={id}>{props.children}</h1>
+               };
+               // parse html code
+               case 'html': {
+                  const htmlString = String(props.children).trim();
+                  return ( 
+                     <div className='HTMLBlock'>
+                        {parse(htmlString)}
+                     </div>
+                  );
+               }
+               default: 
+                  return SanityBlockContent.defaultSerializers.types.block(props);
             }
+            // give h1 an ID for the page content menu
+            // if (props.node.style === 'h1') {
+            //    const id = createValidId(props.node.children[0]?.text)
+            //    return <h1 id={id}>{props.children}</h1>
+            // } else {
+            //    // Fallback for other block types
+            //    return SanityBlockContent.defaultSerializers.types.block(props)
+            // }
          },
       },
       marks: {
-         code: ({ mark, children }) => {
-            const htmlString = String(children).trim();
-            return (
-               <span
-                  dangerouslySetInnerHTML={{
-                     __html: htmlString,
-                  }}
-               ></span>
-            );
-         },
          internalLink: ({ mark, children }) => {
             const { slug = {} } = mark
             const href = `/${slug.current}`

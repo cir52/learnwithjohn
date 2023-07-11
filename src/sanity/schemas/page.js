@@ -36,6 +36,12 @@ const pages = {
          of: [
             {
                type: 'block',
+               styles: [
+                  { title: 'HMTL Code', value: 'html' },
+                  { title: 'Heading 1', value: 'h1' },
+                  { title: 'Heading 2', value: 'h2' },
+                  { title: 'Heading 3', value: 'h3' }                  
+                ],
                marks: {
                   annotations: [
                      {
