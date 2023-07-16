@@ -1,3 +1,16 @@
+import React from 'react'
+// import parse from 'html-react-parser';
+
+//    const tohtml = props => {
+//       console.log(props.children[0].props.text.text)
+//       const htmlString = String(props.children[0].props.text.text).trim();
+//      return (
+//          <div className='HTMLBlock'>
+//             {parse(htmlString)}
+//          </div>
+//      )
+//    }
+
 const pages = {
    name: 'page',
    type: 'document',
